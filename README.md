@@ -14,6 +14,8 @@ https://amzn.asia/d/eOKrQ5s
     - コード書かなくてものぞきに来るとかでもヨシ
     - 途中参加ももちろんオッケー！
 
+# ブランチ戦略
+mainブランチをベースに、ご自身の名前のブランチを作成してください。
 
 # [開発環境](https://github.com/code-polaris/reading-circle-tdd/wiki/%E9%96%8B%E7%99%BA%E7%92%B0%E5%A2%83%E6%BA%96%E5%82%99)
 Wikiページの[開発環境準備](https://github.com/code-polaris/reading-circle-tdd/wiki/%E9%96%8B%E7%99%BA%E7%92%B0%E5%A2%83%E6%BA%96%E5%82%99) を参照して下さい
