@@ -7,6 +7,7 @@ https://amzn.asia/d/eOKrQ5s
 # 輪読会の進め方
 - 月1回、基本的に全員集まってdisucussionしたり、コードの見せあいをする(retrospective的な感じかと)
     - 詳しい日程は、CodePolaris内のディスコードイベントを要確認
+    - コード書かなくても覗きに来るだけでもOKです！
 - 章ごとに区切って、章/月で各自好きな言語で進めていく
     - 開発ペースは、別途のgit Issueを確認
       ﻿- 月一回の集まりの他に、毎週木曜21:00-はイベントをオープンにするけど、必須ではない
@@ -36,3 +37,5 @@ issueナンバーをコミットメッセージに含めるのはチームプロ
 # [discussion](https://github.com/code-polaris/reading-circle-tdd/discussions)
 knowledge stackは[こちら]((https://github.com/code-polaris/reading-circle-tdd/discussions))に掲載します
 気軽にシェアしましょう
+
+
