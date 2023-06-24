@@ -219,3 +219,7 @@ cython_debug/
 
 #history
 .history/
+
+#composer
+composer.*
+/vendor/
