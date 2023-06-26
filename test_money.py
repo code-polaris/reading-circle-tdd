@@ -12,4 +12,5 @@ class TestMoney:
 
     def test_Equality(self):
         assert Dollar(5) == Dollar(5)
+        assert not Dollar(5) == Dollar(6)
 
