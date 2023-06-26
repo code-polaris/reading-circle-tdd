@@ -6,5 +6,6 @@ class Dollar:
         return Dollar(self.amount * multiplier)
     
     def __eq__(self, object: object) -> bool:
-        return True
+        dollar = object
+        return self.amount == dollar.amount
 
