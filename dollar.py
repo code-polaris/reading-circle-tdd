@@ -4,3 +4,4 @@ class Dollar:
 
     def times(self, multiplier):
         pass
+# 第一章途中
