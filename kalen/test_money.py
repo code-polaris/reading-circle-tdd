@@ -5,10 +5,10 @@ class TestMoney:
         
         five = Dollar(5)
         product = five.times(2)
-        assert 10 == product.amount
+        assert product.amount == 10
 
         product = five.times(3)
-        assert 15 == product.amount
+        assert product.amount == 15
 
     def test_Equality(self):
         assert Dollar(5) == Dollar(5)
