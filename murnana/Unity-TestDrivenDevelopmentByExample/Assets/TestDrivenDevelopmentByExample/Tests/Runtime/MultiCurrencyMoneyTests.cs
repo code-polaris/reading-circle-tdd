@@ -24,6 +24,10 @@ namespace TDD.Tests
                 actual: new Dollar (5).Equals (new Dollar (5)),
                 expression: Is.True
             );
+            Assert.That (
+                actual: new Dollar (5).Equals (new Dollar (6)),
+                expression: Is.False
+            );
         }
     }
 }
