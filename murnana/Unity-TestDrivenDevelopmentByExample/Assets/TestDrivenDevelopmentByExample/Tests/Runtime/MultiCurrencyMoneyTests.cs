@@ -10,9 +10,11 @@ namespace TDD.Tests
         [Test]
         public void Multiplication()
         {
-            var five = new Dollar (5);
-            five.Times (2);
-            Assert.That (actual: five.Amonut, expression: Is.EqualTo (10));
+            var five    = new Dollar (5);
+            var product = five.Times (2);
+            Assert.That (actual: product.Amonut, expression: Is.EqualTo (10));
+            product = five.Times (3);
+            Assert.That (actual: product.Amonut, expression: Is.EqualTo (15));
         }
     }
 }

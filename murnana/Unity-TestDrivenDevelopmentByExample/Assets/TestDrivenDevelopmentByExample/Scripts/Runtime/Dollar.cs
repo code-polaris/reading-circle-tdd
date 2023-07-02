@@ -9,9 +9,9 @@ namespace TDD
             Amonut = amount;
         }
 
-        public void Times(int multiplier)
+        public Dollar Times(int multiplier)
         {
-            Amonut *= multiplier;
+            return new Dollar (Amonut * multiplier);
         }
     }
 }
