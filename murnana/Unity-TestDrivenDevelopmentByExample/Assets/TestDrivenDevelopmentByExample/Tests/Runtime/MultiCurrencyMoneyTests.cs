@@ -17,6 +17,7 @@ namespace TDD.Tests
             Assert.That (actual: product.Amonut, expression: Is.EqualTo (15));
         }
 
+        [Test]
         public void Equal()
         {
             Assert.That (
