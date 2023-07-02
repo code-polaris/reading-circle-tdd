@@ -21,7 +21,7 @@ namespace TDD
         /// <inheritdoc />
         public bool Equals(Dollar other)
         {
-            return true;
+            return Amonut == other!.Amonut;
         }
 
         #endregion
