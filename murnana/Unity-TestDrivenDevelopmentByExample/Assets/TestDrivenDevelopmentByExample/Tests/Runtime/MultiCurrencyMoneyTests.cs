@@ -16,5 +16,13 @@ namespace TDD.Tests
             product = five.Times (3);
             Assert.That (actual: product.Amonut, expression: Is.EqualTo (15));
         }
+
+        public void Equal()
+        {
+            Assert.That (
+                actual: new Dollar (5).Equals (new Dollar (5)),
+                expression: Is.True
+            );
+        }
     }
 }
