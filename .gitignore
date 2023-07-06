@@ -221,5 +221,4 @@ cython_debug/
 .history/
 
 #composer
-composer.*
 vendor/
