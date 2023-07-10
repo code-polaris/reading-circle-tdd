@@ -9,4 +9,11 @@ public class Dollar {
     Dollar times(int multiplier) {
         return new Dollar(amount * multiplier);
     }
+
+    public boolean equals(Object object) {
+        if (object instanceof Dollar dollar) {
+            return amount == dollar.amount;
+        }
+        return false;
+    }
 }
