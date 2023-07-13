@@ -21,6 +21,7 @@ public class Dollar {
     return amount == dollar.amount;
   }
 
+  // test
   @Override
   public int hashCode() {
     return Objects.hash(amount);
