@@ -4,3 +4,7 @@ class Money:
     @property
     def amount(self):
         return self.__amount
+    
+    def __eq__(self, object) -> bool:
+        money = object
+        return self.amount == money.amount
