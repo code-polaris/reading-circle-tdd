@@ -1,10 +1,10 @@
 from money import Money
-class Dollar(Money):
+
+class Franc(Money):
     def __init__(self, amount):
         super().__init__(amount)
         self.__amount = amount
-    
 
     def times(self, multiplier: int):
-        return Dollar(self.amount * multiplier)
-
+        return Franc(self.amount * multiplier)
+    
