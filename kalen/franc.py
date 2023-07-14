@@ -1,13 +1,13 @@
-class Franc:
+from money import Money
+
+class Franc(Money):
     def __init__(self, amount):
+        super().__init__(amount)
         self.__amount = amount
-    @property
-    def amount(self):
-        return self.__amount
 
     def times(self, multiplier: int):
         return Franc(self.amount * multiplier)
     
-    def __eq__(self, object: object) -> bool:
-        franc = object
-        return self.amount == franc.amount
+    def __eq__(self, object: Money) -> bool:
+        money = object
+        return self.amount == money.amount
