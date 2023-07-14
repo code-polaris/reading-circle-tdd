@@ -8,6 +8,3 @@ class Franc(Money):
     def times(self, multiplier: int):
         return Franc(self.amount * multiplier)
     
-    def __eq__(self, object: Money) -> bool:
-        money = object
-        return self.amount == money.amount
