@@ -1,6 +1,6 @@
-<?php declare(strict_types=1);
-
-require_once "Dollar.php";
+<?php 
+declare(strict_types=1);
+namespace app;
 
 use PHPUnit\Framework\TestCase;
 
