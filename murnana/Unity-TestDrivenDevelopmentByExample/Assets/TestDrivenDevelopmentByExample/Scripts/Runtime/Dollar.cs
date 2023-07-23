@@ -4,7 +4,7 @@ namespace TDD
 {
     public sealed class Dollar : IEquatable<Dollar>
     {
-        public int Amonut = 10;
+        private int Amonut = 10;
 
         public Dollar(int amount)
         {
