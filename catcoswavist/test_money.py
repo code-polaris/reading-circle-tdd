@@ -6,5 +6,5 @@ class TestMoney():
     def test_multiplication(self):
         
         five = Dollar(5)
-        product = five.times(2)
+        five.times(2)
         assert 10 == five.amount
