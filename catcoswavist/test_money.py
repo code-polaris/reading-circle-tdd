@@ -10,10 +10,13 @@ class TestMoney:
         
         five = Dollar(5)
         product = five.times(2)
-        assert 10 == product.amount
-        # この段階のproductはtostringを通していないのでただのアドレス(読めない)
+        assert product.equals(Dollar(10))
+        # 原文MoneyTest.javaのassertEquals()はequalsを呼び出す
+        print("product10:",Dollar(10),product)
+        # この段階のproductはdollars.py内でtostringを通していないのでただのアドレス(読めない)
         product = five.times(3)
-        assert 15 == product.amount
+        assert product.equals(Dollar(15))
+        print("product10:",Dollar(15),product)
 
         
     def test_equality(self):
