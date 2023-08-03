@@ -1,7 +1,6 @@
 package money;
 
-public class Fran {
-    private int amount;
+public class Fran extends Money {
     Fran(int amount) {
         this.amount = amount;
     }
@@ -9,10 +8,4 @@ public class Fran {
         return new Fran(amount * multiplier);
     }
 
-    public boolean equals(Object object) {
-        if (object instanceof Fran fran) {
-            return amount == fran.amount;
-        }
-        return false;
-    }
 }
