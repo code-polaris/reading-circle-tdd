@@ -9,14 +9,12 @@ class TestMoney:
     def test_multiplication(self):
         
         five = Dollar(5)
-        product = five.times(2)
-        assert product.equals(Dollar(10))
+        assert five.times(2).equals(Dollar(10))
         # 原文MoneyTest.javaのassertEquals()はequalsを呼び出す
-        print("product10:",Dollar(10),product)
+        print("product10:",Dollar(10),five.times(2))
         # この段階のproductはdollars.py内でtostringを通していないのでただのアドレス(読めない)
-        product = five.times(3)
-        assert product.equals(Dollar(15))
-        print("product10:",Dollar(15),product)
+        assert five.times(3).equals(Dollar(15))
+        print("product15:",Dollar(15),five.times(3))
 
         
     def test_equality(self):
