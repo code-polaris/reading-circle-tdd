@@ -14,5 +14,11 @@ class TestMoney:
         # この段階のproductはtostringを通していないのでただのアドレス(読めない)
         product = five.times(3)
         assert 15 == product.amount
+
         
-TestMoney().test_multiplication()
+    def test_equality(self):
+        assert Dollar(5).equals(Dollar(5))
+        assert not Dollar(5).equals(Dollar(6))
+
+if __name__ == '__main__':
+    TestMoney().test_multiplication()
