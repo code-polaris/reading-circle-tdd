@@ -1,10 +1,20 @@
 class Dollar:
     def __init__(self,amount:int) -> int:
-        self.amount = amount
+        # amount関数のprivate化
+        # Javaは同一のクラスであれば別インスタンスのprivateフィールドにアクセスできる。
+        # ~~Pythonは同一のクラス別インスタンスのprivateフィールドにアクセスできない？~~
+        # -> 躓きの原因はインデントだった。@propertyは def __init__()の列
+        self.__amount = amount
+        # kalen573さんの拝見 デコレータ@propertyをなぜ使うか疑問
+ 
+    @property
+    def amount(self):
+        return self.__amount
 
     def times(self, multiplier:int):
-        return Dollar(self.amount*multiplier)
+        return Dollar(self.__amount*multiplier)
+    
     def equals(self,other):
         dollar = other
-        return self.amount == dollar.amount
+        return self.__amount == dollar.amount
 
