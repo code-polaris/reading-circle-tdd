@@ -2,6 +2,7 @@ import pytest
 #testの構造: test_*で始まるを選択したため、test_*.pyで作成
 from dollar import Dollar
 from franc import Franc
+from money import Money
 
 class TestMoney:
     # class指定は()いらない、オブジェクト指定痔に()必要。

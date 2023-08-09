@@ -1,11 +1,11 @@
+from money import Money
 class Dollar:
     def __init__(self,amount:int) -> int:
-        # amount関数のprivate化
-        # Javaは同一のクラスであれば別インスタンスのprivateフィールドにアクセスできる。
-        # ~~Pythonは同一のクラス別インスタンスのprivateフィールドにアクセスできない？~~
-        # -> 躓きの原因はインデントだった。@propertyは def __init__()の列
+        # サブクラスから見えるように知るため、amount関数をprivateからprotectedに変更
+        # Pythonにprotectedは存在しない → self.__amountのままでいい？
         self.__amount = amount
-        # kalen573さんの拝見 デコレータ@propertyをなぜ使うか疑問
+        # 【疑問】kalen573さんの拝見 デコレータ@propertyをなぜ使うか疑問
+        # 【疑問】アンダースコア(_)1個？2個？
  
     @property
     def amount(self):
