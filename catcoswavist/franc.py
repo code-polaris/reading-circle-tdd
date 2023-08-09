@@ -11,6 +11,4 @@ class Franc(Money):
     def times(self, multiplier:int):
         return Franc(self.__amount*multiplier)
     
-    def equals(self,other: Money) -> bool:
-        money = other
-        return self.__amount == money.amount
+    # equalメソッドでのFrancクラス→Moneyクラス、段階的にできず一気にやっちゃった
