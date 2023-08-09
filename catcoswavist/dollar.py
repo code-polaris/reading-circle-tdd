@@ -1,5 +1,7 @@
 from money import Money
-class Dollar:
+# `class Dollar(Money):` ChatGPTで対応できず、理解していない。原因OPP・クラスの理解不足
+# ↑ kanen573さんの拝見(https://github.com/code-polaris/reading-circle-tdd/commit/6643ed6dd5e11cd29f3a7b0923bb15c8de2bf6e7)
+class Dollar(Money):
     def __init__(self,amount:int) -> int:
         # サブクラスから見えるように知るため、amount関数をprivateからprotectedに変更
         # Pythonにprotectedは存在しない → self.__amountのままでいい？
