@@ -1,6 +1,6 @@
 - [ ] $ 5 + 10 CHF = $ 10（ レート が 2: 1 の 場合）   
 - [x] $ 5 * 2 = $ 10   
-- [ ] amount を private に する   
+- [x] amount を private に する   
 - [x] Dollar の 副作用 どう する？
     (補足)　Dollarの副作用とは: 再帰のため、呼び出し時に掛け算をしてしまう。その結果元の数値が変わってしまう。   
 - [ ] Money の 丸め 処理 どう する？   
@@ -8,3 +8,8 @@
 - [ ] hashCode()
 - [ ] nullとの等価性比較
 - [ ] 他のオブジェクトとの等価性比較
+- [x] 5CHF * 2 = 10CHF
+- [ ] DollarとFrancの重複  
+- [x] equalsの一般化  
+- [ ] timesの一般化
+- [ ] FrancとDollarを比較する  
