@@ -1,8 +1,6 @@
-using System;
-
 namespace TDD
 {
-    public sealed class Dollar : Money, IEquatable<Money>
+    public sealed class Dollar : Money
     {
         public Dollar(int amount)
         {
@@ -13,15 +11,5 @@ namespace TDD
         {
             return new Dollar (Amonut * multiplier);
         }
-
-        #region Equality members
-
-        /// <inheritdoc />
-        public bool Equals(Money other)
-        {
-            return Amonut == other!.Amonut;
-        }
-
-        #endregion
     }
 }
