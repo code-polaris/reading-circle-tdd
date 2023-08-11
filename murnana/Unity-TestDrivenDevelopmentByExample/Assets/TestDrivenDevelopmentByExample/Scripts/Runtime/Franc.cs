@@ -4,8 +4,6 @@ namespace TDD
 {
     public sealed class Franc : Money, IEquatable<Franc>
     {
-        private int Amonut = 10;
-
         public Franc(int amount)
         {
             Amonut = amount;
