@@ -33,5 +33,20 @@ namespace TDD.Tests
                 expression: Is.False
             );
         }
+
+        [Test]
+        public void FrancMultiplication()
+        {
+            var five = new Franc (5);
+            Assert.That (
+                actual: five.Times (2),
+                expression: Is.EqualTo (new Franc (10))
+            );
+            Assert.That (
+                actual: five.Times (3),
+                expression: Is.EqualTo (new Franc (15))
+            );
+        }
+
     }
 }
