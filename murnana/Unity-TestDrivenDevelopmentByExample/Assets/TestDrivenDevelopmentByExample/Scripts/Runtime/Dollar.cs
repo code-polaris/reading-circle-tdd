@@ -2,7 +2,7 @@ using System;
 
 namespace TDD
 {
-    public sealed class Dollar : Money, IEquatable<Dollar>
+    public sealed class Dollar : Money, IEquatable<Money>
     {
         public Dollar(int amount)
         {
@@ -17,7 +17,7 @@ namespace TDD
         #region Equality members
 
         /// <inheritdoc />
-        public bool Equals(Dollar other)
+        public bool Equals(Money other)
         {
             return Amonut == other!.Amonut;
         }
