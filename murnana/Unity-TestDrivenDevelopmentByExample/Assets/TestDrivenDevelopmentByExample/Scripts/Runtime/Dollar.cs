@@ -2,7 +2,7 @@ using System;
 
 namespace TDD
 {
-    public sealed class Dollar : IEquatable<Dollar>
+    public sealed class Dollar : Money, IEquatable<Dollar>
     {
         private int Amonut = 10;
 
