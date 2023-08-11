@@ -32,6 +32,14 @@ namespace TDD.Tests
                 actual: new Dollar (5).Equals (new Dollar (6)),
                 expression: Is.False
             );
+            Assert.That (
+                actual: new Franc (5).Equals (new Franc (5)),
+                expression: Is.True
+            );
+            Assert.That (
+                actual: new Franc (5).Equals (new Franc (6)),
+                expression: Is.False
+            );
         }
 
         [Test]
