@@ -17,5 +17,10 @@ class TestMoney:
         five = Franc(5)
         assert five.times(2) == Franc(10)
         assert five.times(3) == Franc(15)
+        # 新しいテストを追加
+        assert not Franc(5) == Dollar(5)
+        # この状態だとエラーになる、つまりフランとダラーは正しいことになっているが、それはおかしい。
+        # 今は通貨概念をまだ導入していないので、Moneyクラスで実クラスが等しい時のみ等価比較を行うことにする
+
 
 
