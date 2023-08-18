@@ -1,3 +1,5 @@
+from abc import abstractmethod
+
 class Money:
     def __init__(self, amount):
         self.__amount = amount
@@ -14,6 +16,11 @@ class Money:
     @staticmethod
     def dollar(amount: int):
         return Dollar(amount)
+    
+    # 一旦abstractでタイムズメソッドを設定
+    @abstractmethod
+    def times(self, multiplier):
+        pass
     
     # -----------------
     
