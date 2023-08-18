@@ -29,11 +29,13 @@ class Money:
         pass
     
     # -----------------
+    # 各コンストラクタとオーバーライドに引数currencyを設定
     
 class Dollar(Money):
-    def __init__(self, amount):
-        super().__init__(amount)
+    def __init__(self, amount, currency):
+        super().__init__(amount, currency)
         self.__amount = amount
+        self.__currency = currency
     
     def times(self, multiplier: int):
         return Dollar(self.amount * multiplier)
@@ -41,10 +43,10 @@ class Dollar(Money):
     # -----------------
     
 class Franc(Money):
-    def __init__(self, amount):
-        super().__init__(amount)
+    def __init__(self, amount, currency):
+        super().__init__(amount, currency)
         self.__amount = amount
+        self.__currency = currency
     
-    # フランとダラーのタイムズメソッドを一致させMoneyに置けるようにする
     def times(self, multiplier: int):
         return Franc(self.amount * multiplier)

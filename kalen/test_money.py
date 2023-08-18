@@ -23,8 +23,8 @@ class TestMoney:
 
     # 通貨を確認するためのテストを追加
     def test_Currency(self):
-        assert Money.dollar(1).currency == "USD"
-        assert Money.franc(1).currency == "CHF"
+        assert Money.dollar(1).currency() == "USD"
+        assert Money.franc(1).currency() == "CHF"
 
 
 
