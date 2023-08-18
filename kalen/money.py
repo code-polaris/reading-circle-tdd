@@ -37,8 +37,9 @@ class Dollar(Money):
         self.__amount = amount
         self.__currency = currency
     
+    # Moneyクラスから返すように変更
     def times(self, multiplier: int):
-        return Dollar(self.amount * multiplier)
+        return Money.dollar(self.amount * multiplier)
     
     # -----------------
     
@@ -48,5 +49,6 @@ class Franc(Money):
         self.__amount = amount
         self.__currency = currency
     
+    # Moneyクラスから返すように変更
     def times(self, multiplier: int):
-        return Franc(self.amount * multiplier)
+        return Money.franc(self.amount * multiplier)
