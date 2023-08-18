@@ -7,15 +7,17 @@ class Money:
     
     def __eq__(self, object) -> bool:
         money = object
-        return self.amount == money.amount and type(self) == type(money)
-    # currencyメソッドを追加。インスタンス変数も追加
+        # type比較を通貨比較に変更する
+        return self.amount == money.amount and self.currency == money.currency
+    # currencyメソッドをproperty化する
+    @property
     def currency(self):
         return self.__currency
 
     @property
     def amount(self):
         return self.__amount
-    # staticの戻り値に通貨を追加
+    
     @staticmethod
     def dollar(amount: int):
         return Dollar(amount, "USD")
@@ -29,13 +31,11 @@ class Money:
         pass
     
     # -----------------
-    # サブクラスのオーバーライドインスタンス変数を削除。親クラスに統合
-    
+        
 class Dollar(Money):
     def __init__(self, amount, currency):
         super().__init__(amount, currency)
     
-    # Moneyクラスから返すように変更
     def times(self, multiplier: int):
         return Money.dollar(self.amount * multiplier)
     
@@ -45,6 +45,6 @@ class Franc(Money):
     def __init__(self, amount, currency):
         super().__init__(amount, currency)
     
-    # Moneyクラスから返すように変更
+    
     def times(self, multiplier: int):
         return Money.franc(self.amount * multiplier)

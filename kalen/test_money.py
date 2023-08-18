@@ -4,7 +4,6 @@ from money import Money
 
 class TestMoney:
     def test_multiplication(self):
-        # MoneyからFrancを返すように書き換える。Moneyクラスにstaticメソッドを設置する
         five = Money.dollar(5)
         assert five.times(2) == Money.dollar(10)
         assert five.times(3) == Money.dollar(15)
@@ -21,10 +20,10 @@ class TestMoney:
         assert five.times(3) == Money.franc(15)
         assert not Money.franc(5) == Money.dollar(5)
 
-    # 通貨を確認するためのテストを追加
+    # currencyをメソッドからプロパティに変更
     def test_Currency(self):
-        assert Money.dollar(1).currency() == "USD"
-        assert Money.franc(1).currency() == "CHF"
+        assert Money.dollar(1).currency == "USD"
+        assert Money.franc(1).currency == "CHF"
 
 
 
