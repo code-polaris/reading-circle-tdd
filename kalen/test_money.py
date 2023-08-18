@@ -21,5 +21,10 @@ class TestMoney:
         assert five.times(3) == Money.franc(15)
         assert not Money.franc(5) == Money.dollar(5)
 
+    # 通貨を確認するためのテストを追加
+    def test_Currency(self):
+        assert Money.dollar(1).currency == "USD"
+        assert Money.franc(1).currency == "CHF"
+
 
 
