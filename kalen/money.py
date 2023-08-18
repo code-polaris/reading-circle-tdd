@@ -29,13 +29,11 @@ class Money:
         pass
     
     # -----------------
-    # 各コンストラクタとオーバーライドに引数currencyを設定
+    # サブクラスのオーバーライドインスタンス変数を削除。親クラスに統合
     
 class Dollar(Money):
     def __init__(self, amount, currency):
         super().__init__(amount, currency)
-        self.__amount = amount
-        self.__currency = currency
     
     # Moneyクラスから返すように変更
     def times(self, multiplier: int):
@@ -46,8 +44,6 @@ class Dollar(Money):
 class Franc(Money):
     def __init__(self, amount, currency):
         super().__init__(amount, currency)
-        self.__amount = amount
-        self.__currency = currency
     
     # Moneyクラスから返すように変更
     def times(self, multiplier: int):
