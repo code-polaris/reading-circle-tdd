@@ -7,4 +7,3 @@ class Dollar(Money):
 
     def times(self, multiplier: int):
         return Dollar(self.amount * multiplier)
-
