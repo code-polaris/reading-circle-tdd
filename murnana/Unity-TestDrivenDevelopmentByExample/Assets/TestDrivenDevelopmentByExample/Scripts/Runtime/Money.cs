@@ -2,9 +2,16 @@ using System;
 
 namespace TDD
 {
-    public class Money : IEquatable<Money>
+    public abstract class Money : IEquatable<Money>
     {
         protected int Amonut = 10;
+
+        public static Money Dollar(int amount)
+        {
+            return new Dollar (amount);
+        }
+
+        public abstract Money Times(int multiplier);
 
         #region Equality members
 

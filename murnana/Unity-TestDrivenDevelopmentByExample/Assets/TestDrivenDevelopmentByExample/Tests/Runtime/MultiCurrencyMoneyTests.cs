@@ -10,7 +10,7 @@ namespace TDD.Tests
         [Test]
         public void Multiplication()
         {
-            var five = new Dollar (5);
+            Money five = Money.Dollar (5);
             Assert.That (
                 actual: five.Times (2),
                 expression: Is.EqualTo (new Dollar (10))

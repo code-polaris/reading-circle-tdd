@@ -7,7 +7,7 @@ namespace TDD
             Amonut = amount;
         }
 
-        public Money Times(int multiplier)
+        public override Money Times(int multiplier)
         {
             return new Dollar (Amonut * multiplier);
         }
