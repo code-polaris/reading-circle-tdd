@@ -33,15 +33,15 @@ namespace TDD.Tests
                 expression: Is.False
             );
             Assert.That (
-                actual: new Franc (5).Equals (new Franc (5)),
+                actual: Money.Franc (5).Equals (Money.Franc (5)),
                 expression: Is.True
             );
             Assert.That (
-                actual: new Franc (5).Equals (new Franc (6)),
+                actual: Money.Franc (5).Equals (Money.Franc (6)),
                 expression: Is.False
             );
             Assert.That (
-                actual: new Franc (5).Equals (Money.Dollar (5)),
+                actual: Money.Franc (5).Equals (Money.Dollar (5)),
                 expression: Is.False
             );
         }
@@ -49,16 +49,15 @@ namespace TDD.Tests
         [Test]
         public void FrancMultiplication()
         {
-            var five = new Franc (5);
+            Money five = Money.Franc (5);
             Assert.That (
                 actual: five.Times (2),
-                expression: Is.EqualTo (new Franc (10))
+                expression: Is.EqualTo (Money.Franc (10))
             );
             Assert.That (
                 actual: five.Times (3),
-                expression: Is.EqualTo (new Franc (15))
+                expression: Is.EqualTo (Money.Franc (15))
             );
         }
-
     }
 }
