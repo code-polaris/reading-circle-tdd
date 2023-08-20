@@ -9,7 +9,7 @@ namespace TDD
 
         public static Money Dollar(int amount)
         {
-            return new Dollar (amount);
+            return new Dollar (amount: amount, currency: "USD");
         }
 
         public static Money Franc(int amount)

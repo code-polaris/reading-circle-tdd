@@ -2,15 +2,15 @@ namespace TDD
 {
     public sealed class Dollar : Money
     {
-        public Dollar(int amount)
+        public Dollar(int amount, string currency)
         {
             Amonut     = amount;
-            m_Currency = "USD";
+            m_Currency = currency;
         }
 
         public override Money Times(int multiplier)
         {
-            return new Dollar (Amonut * multiplier);
+            return Money.Dollar (Amonut * multiplier);
         }
     }
 }
