@@ -13,11 +13,11 @@ namespace TDD.Tests
             Money five = Money.Dollar (5);
             Assert.That (
                 actual: five.Times (2),
-                expression: Is.EqualTo (new Dollar (10))
+                expression: Is.EqualTo (Money.Dollar (10))
             );
             Assert.That (
                 actual: five.Times (3),
-                expression: Is.EqualTo (new Dollar (15))
+                expression: Is.EqualTo (Money.Dollar (15))
             );
         }
 
@@ -25,11 +25,11 @@ namespace TDD.Tests
         public void Equal()
         {
             Assert.That (
-                actual: new Dollar (5).Equals (new Dollar (5)),
+                actual: Money.Dollar (5).Equals (Money.Dollar (5)),
                 expression: Is.True
             );
             Assert.That (
-                actual: new Dollar (5).Equals (new Dollar (6)),
+                actual: Money.Dollar (5).Equals (Money.Dollar (6)),
                 expression: Is.False
             );
             Assert.That (
@@ -41,7 +41,7 @@ namespace TDD.Tests
                 expression: Is.False
             );
             Assert.That (
-                actual: new Franc (5).Equals (new Dollar (5)),
+                actual: new Franc (5).Equals (Money.Dollar (5)),
                 expression: Is.False
             );
         }
