@@ -5,6 +5,7 @@ namespace TDD
     public abstract class Money : IEquatable<Money>
     {
         protected int Amonut = 10;
+        protected string m_Currency;
 
         public static Money Dollar(int amount)
         {
@@ -18,7 +19,10 @@ namespace TDD
 
         public abstract Money Times(int multiplier);
 
-        public abstract string Currency();
+        public string Currency()
+        {
+            return m_Currency;
+        }
 
         #region Equality members
 

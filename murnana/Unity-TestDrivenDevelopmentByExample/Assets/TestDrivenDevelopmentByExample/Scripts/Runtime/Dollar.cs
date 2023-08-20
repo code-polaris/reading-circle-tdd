@@ -4,13 +4,8 @@ namespace TDD
     {
         public Dollar(int amount)
         {
-            Amonut = amount;
-        }
-
-        /// <inheritdoc />
-        public override string Currency()
-        {
-            return "USD";
+            Amonut     = amount;
+            m_Currency = "USD";
         }
 
         public override Money Times(int multiplier)

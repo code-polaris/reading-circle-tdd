@@ -4,13 +4,8 @@ namespace TDD
     {
         public Franc(int amount)
         {
-            Amonut = amount;
-        }
-
-        /// <inheritdoc />
-        public override string Currency()
-        {
-            return "CHF";
+            Amonut     = amount;
+            m_Currency = "CHF";
         }
 
         public override Money Times(int multiplier)
