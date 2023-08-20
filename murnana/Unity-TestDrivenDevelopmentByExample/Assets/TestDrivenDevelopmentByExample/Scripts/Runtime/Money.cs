@@ -4,8 +4,9 @@ namespace TDD
 {
     public abstract class Money : IEquatable<Money>
     {
-        protected int Amonut = 10;
-        protected string m_Currency;
+        protected readonly int m_Amount;
+        private readonly string m_Currency;
+
 
         public static Money Dollar(int amount)
         {
@@ -16,6 +17,14 @@ namespace TDD
         {
             return new Franc (amount, "CHF");
         }
+
+
+        protected Money(int amount, string currency)
+        {
+            m_Amount   = amount;
+            m_Currency = currency;
+        }
+
 
         public abstract Money Times(int multiplier);
 
@@ -34,7 +43,7 @@ namespace TDD
                 return false;
             }
 
-            return Amonut == other!.Amonut;
+            return m_Amount == other!.m_Amount;
         }
 
         #endregion
