@@ -59,5 +59,18 @@ namespace TDD.Tests
                 expression: Is.EqualTo (Money.Franc (15))
             );
         }
+
+        [Test]
+        public void Currency()
+        {
+            Assert.That (
+                actual: Money.Dollar (1).Currency(),
+                expression: Is.EqualTo ("USD")
+            );
+            Assert.That (
+                actual: Money.Franc (1).Currency(),
+                expression: Is.EqualTo ("CHF")
+            );
+        }
     }
 }
