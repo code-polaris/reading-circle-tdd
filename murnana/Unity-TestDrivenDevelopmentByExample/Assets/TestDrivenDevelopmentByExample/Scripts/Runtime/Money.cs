@@ -14,7 +14,7 @@ namespace TDD
 
         public static Money Franc(int amount)
         {
-            return new Franc (amount);
+            return new Franc (amount, "CHF");
         }
 
         public abstract Money Times(int multiplier);
