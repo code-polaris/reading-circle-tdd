@@ -7,6 +7,12 @@ namespace TDD
             Amonut = amount;
         }
 
+        /// <inheritdoc />
+        public override string Currency()
+        {
+            return "USD";
+        }
+
         public override Money Times(int multiplier)
         {
             return new Dollar (Amonut * multiplier);

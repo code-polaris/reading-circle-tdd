@@ -18,6 +18,8 @@ namespace TDD
 
         public abstract Money Times(int multiplier);
 
+        public abstract string Currency();
+
         #region Equality members
 
         /// <inheritdoc />
