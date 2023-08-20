@@ -11,6 +11,11 @@ namespace TDD
         /// <inheritdoc />
         public bool Equals(Money other)
         {
+            if (GetType() != other!.GetType())
+            {
+                return false;
+            }
+
             return Amonut == other!.Amonut;
         }
 
