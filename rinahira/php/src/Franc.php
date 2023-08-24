@@ -4,12 +4,14 @@ namespace app;
 
 class Franc extends Money
 {
-    public function __construct(protected int $amount)
+    /**
+     * 金額に数値を掛け金額を得る
+     * 
+     * @param integer $multiplier
+     * @return Money
+     */
+    public function times(int $multiplier): Money
     {
-    }
-
-    public function times(int $multiplier): ?Money
-    {
-        return new Franc($this->amount * $multiplier);
+        return Money::franc($this->amount * $multiplier);
     }
 }

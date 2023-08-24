@@ -2,13 +2,31 @@
 declare(strict_types=1);
 namespace app;
 
+/**
+ * Undocumented class
+ */
 abstract class Money
 {
-    public function __construct(protected int $amount)
+    /**
+     * コンストラクタ
+     *
+     * @param integer $amount
+     * @param string $currency
+     */
+    public function __construct(protected int $amount, protected string $currency)
     {
     }
 
-    abstract function times(int $multiplier);
+    abstract function times(int $multiplier): ?Money;
+
+    /**
+     * 通貨取得
+     * @return string
+     */
+    public function currency(): string
+    {
+        return $this->currency;
+    }
 
     /**
      * 等価性比較
@@ -23,24 +41,23 @@ abstract class Money
     }
 
     /**
-     * Dollarクラス返却
+     * Dollarクラスファクトリメソッド
      * @param integer $amount
      * @return Money
      */
     static function dollar(int $amount): Money
     {
-        return new Dollar($amount);
-
+        return new Dollar($amount, "USD");
     }
 
     /**
-     * Francクラス返却
+     * Francクラスファクトリメソッド
      *
      * @param integer $amount
      * @return Money
      */
     static function franc(int $amount): Money
     {
-        return new Franc($amount);
+        return new Franc($amount, "CHF");
     }
 }
