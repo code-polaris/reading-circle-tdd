@@ -8,6 +8,7 @@ class Money:
         # 【疑問】アンダースコア(_)1個？2個？
 
     def equals(self,object) -> bool:
-        money = object
-        return self.__amount == money.amount
+        if isinstance(object, Money):
+            return self.__amount == object.amount and type(self) == type(object)
+        return
         # __amountのアンダースコア外す？外さない？

@@ -5,7 +5,7 @@ from franc import Franc
 from money import Money
 
 class TestMoney:
-    # class指定は()いらない、オブジェクト指定痔に()必要。
+    # class指定は()いらない、オブジェクト指定時に()必要。
     # があると()インスタンスができる
     # ()がいらないクラス指定→staticメソッド
     def test_multiplication(self):
@@ -22,6 +22,8 @@ class TestMoney:
         assert not Dollar(5).equals(Dollar(6))
         assert Franc(5).equals(Franc(5))
         assert not Franc(5).equals(Franc(6))
+        # ドルとフランが等価でないことを確認
+        assert not Franc(5).equals(Dollar(5))
 
     def test_franc_multiplication(self):
         five = Franc(5)

@@ -13,8 +13,4 @@ class Dollar(Money):
     def times(self, multiplier:int):
         return Dollar(self.__amount*multiplier)
         # まだMoneyに変換しない、Dollarのまま(変更するとAttributeError: 'Money' object has no attribute 'equals'になった)
-    
-    def equals(self,object: Money) -> bool:
-        money = object
-        return self.__amount == money.amount
 
