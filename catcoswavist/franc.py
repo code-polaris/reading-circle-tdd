@@ -5,10 +5,10 @@ class Franc(Money):
         # これがないと`TypeError: Money.__init__() takes 1 positional argument but 2 were given`のエラー？
         super().__init__(amount)
         # サブクラスから見えるように知るため、amount関数をprivateからprotectedに変更
-        # Pythonにprotectedは存在しない → self.__amountのままでいい？
-        self.__amount = amount
+        # Pythonにprotectedは存在しない → self._amountのままでいい？
+        self._amount = amount
  
     def times(self, multiplier:int):
-        return Franc(self.__amount*multiplier)
+        return Franc(self._amount*multiplier)
     
     # equalメソッドでのFrancクラス→Moneyクラス、段階的にできず一気にやっちゃった

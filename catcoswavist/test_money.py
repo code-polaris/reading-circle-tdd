@@ -13,8 +13,10 @@ class TestMoney:
         five = Dollar(5)
         assert five.times(2).equals(Dollar(10))
         # 原文MoneyTest.javaのassertEquals()はequalsを呼び出す
+        print("product10:",Dollar(10),five.times(2))
         # この段階のproductはdollars.py内でtostringを通していないのでただのアドレス(読めない)
         assert five.times(3).equals(Dollar(15))
+        print("product15:",Dollar(15),five.times(3))
 
         
     def test_equality(self):
@@ -28,7 +30,9 @@ class TestMoney:
     def test_franc_multiplication(self):
         five = Franc(5)
         assert five.times(2).equals(Franc(10))
+        print("franc10:",Franc(10),five.times(2))
         assert five.times(3).equals(Franc(15))
+        print("franc15:",Franc(15),five.times(3))
 
 if __name__ == '__main__':
     TestMoney().test_multiplication()

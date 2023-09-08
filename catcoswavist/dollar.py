@@ -7,10 +7,10 @@ class Dollar(Money):
         # これがないと`TypeError: Money.__init__() takes 1 positional argument but 2 were given`のエラー？
         super().__init__(amount)
         # サブクラスから見えるように知るため、amount関数をprivateからprotectedに変更
-        # Pythonにprotectedは存在しない → self.__amountのままでいい？
-        self.__amount = amount
+        # Pythonにprotectedは存在しない → self._amountのままでいい？
+        self._amount = amount
 
     def times(self, multiplier:int):
-        return Dollar(self.__amount*multiplier)
+        return Dollar(self._amount*multiplier)
         # まだMoneyに変換しない、Dollarのまま(変更するとAttributeError: 'Money' object has no attribute 'equals'になった)
 
