@@ -2,10 +2,7 @@
 declare(strict_types=1);
 namespace app;
 
-/**
- * Undocumented class
- */
-abstract class Money
+class Money
 {
     /**
      * コンストラクタ
@@ -17,7 +14,9 @@ abstract class Money
     {
     }
 
-    abstract function times(int $multiplier): ?Money;
+    public function times(int $multiplier): ?Money {
+        return new Money($this->amount * $multiplier, $this->currency);
+    }
 
     /**
      * 通貨取得
@@ -37,9 +36,13 @@ abstract class Money
     public function equals(Object $object): bool
     {
         $money = $object;
-        return $this->amount === $money->amount && get_class($this) === get_class($money);
+        return $this->amount === $money->amount && $this->currency() === $money->currency;
     }
 
+    public function toString(): string
+    {
+        return $this->amount . " " . $this->currency();
+    }
     /**
      * Dollarクラスファクトリメソッド
      * @param integer $amount
