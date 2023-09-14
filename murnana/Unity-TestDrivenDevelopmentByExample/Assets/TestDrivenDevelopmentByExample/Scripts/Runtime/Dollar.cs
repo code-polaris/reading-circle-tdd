@@ -2,14 +2,14 @@ namespace TDD
 {
     public sealed class Dollar : Money
     {
-        public Dollar(int amount)
+        public Dollar(int amount, string currency)
+            : base (amount: amount, currency: currency)
         {
-            Amonut = amount;
         }
 
-        public Dollar Times(int multiplier)
+        public override Money Times(int multiplier)
         {
-            return new Dollar (Amonut * multiplier);
+            return Money.Dollar (m_Amount * multiplier);
         }
     }
 }
