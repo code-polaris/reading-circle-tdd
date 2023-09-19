@@ -1,4 +1,4 @@
-from abc import abstractmethod
+#from abc import abstractmethod
 
 class Money:
     def __init__(self, amount, currency):
@@ -6,8 +6,8 @@ class Money:
         self.__currency = currency
     
     def __eq__(self, object) -> bool:
-        money = object
-        return self.amount == money.amount and self.currency == money.currency
+        #money = object
+        return self.amount == object.amount and self.currency == object.currency
 
     @property
     def currency(self):
@@ -24,20 +24,20 @@ class Money:
     @staticmethod
     def franc(amount: int):
         return Franc(amount, "CHF")
-    
-    @abstractmethod
+# アブストラクトメソッドから通常メソッドへ変更。Moneyクラスを返すようにする    
+    #@abstractmethod
     def times(self, multiplier):
-        pass
+        return Money(self.amount * multiplier, self.currency)
+        #pass
     
     # -----------------
         
 class Dollar(Money):
     def __init__(self, amount, currency):
         super().__init__(amount, currency)
-    # timesメソッド共通化のために、一旦戻り値をサブクラスに戻す
+# timesメソッドがMoneyクラスを返すようにする。Francも同じ
     def times(self, multiplier: int):
-    # 通貨をインスタンス変数に置き換える
-        return Dollar(self.amount * multiplier, self.currency)
+        return Money(self.amount * multiplier, self.currency)
     
     # -----------------
     
@@ -45,6 +45,5 @@ class Franc(Money):
     def __init__(self, amount, currency):
         super().__init__(amount, currency)
     
-    
     def times(self, multiplier: int):
-        return Franc(self.amount * multiplier, self.currency)
+        return Money(self.amount * multiplier, self.currency)

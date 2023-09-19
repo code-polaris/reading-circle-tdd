@@ -20,10 +20,11 @@ class TestMoney:
         assert five.times(3) == Money.franc(15)
         assert not Money.franc(5) == Money.dollar(5)
 
-    # currencyをメソッドからプロパティに変更
     def test_Currency(self):
         assert Money.dollar(1).currency == "USD"
         assert Money.franc(1).currency == "CHF"
-
+# 新しいテストを追加
+    #def test_DifferentClassEquality(self):
+        #assert Money(10, "CHF") == Franc(10, "CHF")
 
 
