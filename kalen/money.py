@@ -7,9 +7,8 @@ class Money:
     
     def __eq__(self, object) -> bool:
         money = object
-        # type比較を通貨比較に変更する
         return self.amount == money.amount and self.currency == money.currency
-    # currencyメソッドをproperty化する
+
     @property
     def currency(self):
         return self.__currency
@@ -35,9 +34,10 @@ class Money:
 class Dollar(Money):
     def __init__(self, amount, currency):
         super().__init__(amount, currency)
-    
+    # timesメソッド共通化のために、一旦戻り値をサブクラスに戻す
     def times(self, multiplier: int):
-        return Money.dollar(self.amount * multiplier)
+    # 通貨を設定する
+        return Dollar(self.amount * multiplier, "USD")
     
     # -----------------
     
@@ -47,4 +47,4 @@ class Franc(Money):
     
     
     def times(self, multiplier: int):
-        return Money.franc(self.amount * multiplier)
+        return Franc(self.amount * multiplier, "CHF")
