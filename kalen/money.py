@@ -24,8 +24,7 @@ class Money:
     @staticmethod
     def franc(amount: int):
         return Franc(amount, "CHF")
-# アブストラクトメソッドから通常メソッドへ変更。Moneyクラスを返すようにする    
-    #@abstractmethod
+
     def times(self, multiplier):
         return Money(self.amount * multiplier, self.currency)
         #pass
@@ -35,15 +34,10 @@ class Money:
 class Dollar(Money):
     def __init__(self, amount, currency):
         super().__init__(amount, currency)
-# timesメソッドがMoneyクラスを返すようにする。Francも同じ
-    def times(self, multiplier: int):
-        return Money(self.amount * multiplier, self.currency)
-    
+# timesメソッドを削除。Francも同じ
+   
     # -----------------
     
 class Franc(Money):
     def __init__(self, amount, currency):
         super().__init__(amount, currency)
-    
-    def times(self, multiplier: int):
-        return Money(self.amount * multiplier, self.currency)
