@@ -36,8 +36,8 @@ class Dollar(Money):
         super().__init__(amount, currency)
     # timesメソッド共通化のために、一旦戻り値をサブクラスに戻す
     def times(self, multiplier: int):
-    # 通貨を設定する
-        return Dollar(self.amount * multiplier, "USD")
+    # 通貨をインスタンス変数に置き換える
+        return Dollar(self.amount * multiplier, self.currency)
     
     # -----------------
     
@@ -47,4 +47,4 @@ class Franc(Money):
     
     
     def times(self, multiplier: int):
-        return Franc(self.amount * multiplier, "CHF")
+        return Franc(self.amount * multiplier, self.currency)
