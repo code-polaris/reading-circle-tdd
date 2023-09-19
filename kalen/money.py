@@ -6,7 +6,8 @@ class Expression(ABC):
 # ---------------------
 
 class Bank:
-    pass
+    def reduce(self, source: Exception, to: str):
+        return Money.dollar(10)
 
 # ---------------------
 

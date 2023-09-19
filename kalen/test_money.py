@@ -1,4 +1,5 @@
 from money import Money
+from money import Bank
 
 class TestMoney:
     def test_multiplication(self):
@@ -14,7 +15,7 @@ class TestMoney:
     def test_Currency(self):
         assert Money.dollar(1).currency == "USD"
         assert Money.franc(1).currency == "CHF"
-# テストを少し変えます
+
     def test_SimpleAddition(self):
         five = Money.dollar(5)
         sum = five + five
