@@ -19,22 +19,21 @@ class Money:
     
     @staticmethod
     def dollar(amount: int):
-        return Dollar(amount, "USD")
-    
+        return Money(amount, "USD")
+    # サブクラスを削除する準備としてMoneyクラスを返すようにする
     @staticmethod
     def franc(amount: int):
-        return Franc(amount, "CHF")
+        return Money(amount, "CHF")
 
     def times(self, multiplier):
         return Money(self.amount * multiplier, self.currency)
         #pass
     
     # -----------------
-        
-class Dollar(Money):
-    def __init__(self, amount, currency):
-        super().__init__(amount, currency)
-# timesメソッドを削除。Francも同じ
+# Dollarクラスを参照しているテストはないのでDollarクラスは削除する        
+# class Dollar(Money):
+#     def __init__(self, amount, currency):
+#         super().__init__(amount, currency)
    
     # -----------------
     
