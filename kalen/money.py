@@ -5,9 +5,6 @@ class Money:
         self.__amount = amount
         self.__currency = currency
     
-    def __eq__(self, object) -> bool:
-        return self.amount == object.amount and self.currency == object.currency
-
     @property
     def currency(self):
         return self.__currency
@@ -23,6 +20,12 @@ class Money:
     @staticmethod
     def franc(amount: int):
         return Money(amount, "CHF")
+
+    def __eq__(self, object) -> bool:
+        return self.amount == object.amount and self.currency == object.currency
+
+    def __add__(self, addend):
+        return Money(self.__amount + addend.__amount, self.__currency)
 
     def times(self, multiplier):
         return Money(self.amount * multiplier, self.currency)
