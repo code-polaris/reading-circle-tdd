@@ -1,4 +1,14 @@
-#from abc import abstractmethod
+from abc import ABC, abstractmethod
+# 新しいクラスを追加
+class Expression(ABC):
+    pass
+
+# ---------------------
+
+class Bank:
+    pass
+
+# ---------------------
 
 class Money:
     def __init__(self, amount, currency):
