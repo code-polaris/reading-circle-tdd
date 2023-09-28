@@ -4,7 +4,7 @@ import org.codepolaris.tdd.utils.Currency;
 
 import java.util.Objects;
 
-public class Money {
+public class Money implements Expression {
   protected int amount;
   protected String currency;
 
@@ -46,5 +46,9 @@ public class Money {
   @Override
   public String toString() {
     return amount + " " + currency;
+  }
+
+  public Expression plus(Money added) {
+    return new Money(amount + added.amount, currency());
   }
 }
