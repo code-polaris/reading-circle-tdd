@@ -1,6 +1,5 @@
-from dollar import Dollar
-from franc import Franc
 from money import Money
+from money import Bank
 
 class TestMoney:
     def test_multiplication(self):
@@ -11,19 +10,16 @@ class TestMoney:
     def test_Equality(self):
         assert Money.dollar(5) == Money.dollar(5)
         assert not Money.dollar(5) == Money.dollar(6)
-        assert Money.franc(5) == Money.franc(5)
-        assert not Money.franc(5) == Money.franc(6)
-
-    def test_FrancMultiplication(self):
-        five = Money.franc(5)
-        assert five.times(2) == Money.franc(10)
-        assert five.times(3) == Money.franc(15)
         assert not Money.franc(5) == Money.dollar(5)
-
-    # currencyをメソッドからプロパティに変更
+    
     def test_Currency(self):
         assert Money.dollar(1).currency == "USD"
         assert Money.franc(1).currency == "CHF"
 
-
+    def test_SimpleAddition(self):
+        five = Money.dollar(5)
+        sum = five + five
+        bank = Bank()
+        reduce = bank.reduce(sum, "USD")
+        assert Money.dollar(10) == reduce
 
