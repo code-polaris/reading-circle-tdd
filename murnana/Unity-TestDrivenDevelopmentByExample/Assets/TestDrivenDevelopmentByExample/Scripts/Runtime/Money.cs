@@ -41,12 +41,13 @@ namespace TDD
         /// <inheritdoc />
         public bool Equals(Money other)
         {
-            if (GetType() != other!.GetType())
+            if (other == null)
             {
                 return false;
             }
 
-            return m_Amount == other!.m_Amount;
+            return (Currency() == other.Currency())
+                && (m_Amount == other.m_Amount);
         }
 
         #endregion
