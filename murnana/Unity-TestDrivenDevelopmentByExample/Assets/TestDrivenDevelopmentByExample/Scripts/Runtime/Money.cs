@@ -2,7 +2,7 @@ using System;
 
 namespace TDD
 {
-    public abstract class Money : IEquatable<Money>
+    public class Money : IEquatable<Money>
     {
         protected readonly int m_Amount;
         protected readonly string m_Currency;
@@ -19,14 +19,17 @@ namespace TDD
         }
 
 
-        protected Money(int amount, string currency)
+        public Money(int amount, string currency)
         {
             m_Amount   = amount;
             m_Currency = currency;
         }
 
 
-        public abstract Money Times(int multiplier);
+        public virtual Money Times(int multiplier)
+        {
+            return null;
+        }
 
         public string Currency()
         {
