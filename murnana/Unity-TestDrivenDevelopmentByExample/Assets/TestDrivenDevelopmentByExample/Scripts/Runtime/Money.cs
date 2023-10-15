@@ -26,9 +26,9 @@ namespace TDD
         }
 
 
-        public virtual Money Times(int multiplier)
+        public Money Times(int multiplier)
         {
-            return null;
+            return new Money (amount: m_Amount * multiplier, currency: m_Currency);
         }
 
         public string Currency()
