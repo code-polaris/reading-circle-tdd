@@ -5,7 +5,7 @@ namespace TDD
     public abstract class Money : IEquatable<Money>
     {
         protected readonly int m_Amount;
-        private readonly string m_Currency;
+        protected readonly string m_Currency;
 
 
         public static Money Dollar(int amount)
