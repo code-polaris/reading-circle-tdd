@@ -50,5 +50,15 @@ namespace TDD
         }
 
         #endregion
+
+        #region Overrides of Object
+
+        /// <inheritdoc />
+        public override string ToString()
+        {
+            return $"{m_Amount} {m_Currency}";
+        }
+
+        #endregion
     }
 }
