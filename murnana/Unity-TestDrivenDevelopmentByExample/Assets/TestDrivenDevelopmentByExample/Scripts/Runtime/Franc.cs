@@ -9,7 +9,7 @@ namespace TDD
 
         public override Money Times(int multiplier)
         {
-            return Money.Franc (m_Amount * multiplier);
+            return new Franc (amount: m_Amount * multiplier, currency: "CHF");
         }
     }
 }

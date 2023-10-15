@@ -9,7 +9,7 @@ namespace TDD
 
         public override Money Times(int multiplier)
         {
-            return Money.Dollar (m_Amount * multiplier);
+            return new Dollar (amount: m_Amount * multiplier, currency: "USD");
         }
     }
 }
