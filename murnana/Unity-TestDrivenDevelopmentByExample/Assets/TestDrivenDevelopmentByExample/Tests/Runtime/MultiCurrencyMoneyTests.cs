@@ -72,5 +72,14 @@ namespace TDD.Tests
                 expression: Is.EqualTo ("CHF")
             );
         }
+
+        [Test]
+        public void DifferentClassEquality()
+        {
+            Assert.That (
+                actual: new Money (amount: 10, currency: "CHF"),
+                expression: Is.EqualTo (new Franc (amount: 10, currency: "CHF"))
+            );
+        }
     }
 }
