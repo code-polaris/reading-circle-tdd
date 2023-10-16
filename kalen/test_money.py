@@ -23,3 +23,10 @@ class TestMoney:
         reduce = bank.reduce(sum, "USD")
         assert Money.dollar(10) == reduce
 
+    def test_PlusReturnsSum(self):
+        five = Money.dollar(5)
+        result = five + five
+        sum = result
+        assert five == sum.augend
+        assert five == sum.addend
+
