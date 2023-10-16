@@ -26,14 +26,16 @@ class Bank:
 
         sum = source
         return sum.reduce(to)
-    
+    # BankのAddRateメソッドの戻り値を追加、rateの内容を変更
     def addRate(self, fromcurrency: str, to: str, rate: int):
-        pass
+        curr_rate = Pair(fromcurrency, to)
+        self.rates[curr_rate] = rate
 
     def rate(self, fromcurrency: str, to: str):
-        return (2 if fromcurrency == "CHF" and to == "USD" else 1)
-    # ※三項演算子難しい(´・ω・｀)
-
+        curr_rate = Pair(fromcurrency, to)
+        if fromcurrency == to:
+            return 1
+        return self.rates.get(curr_rate)
 
 # ---------------------
 
@@ -84,8 +86,6 @@ class Money(Expression):
     def times(self, multiplier):
         return Money(self.amount * multiplier, self.currency)
         
-    # Moneyのreduceの戻り値を書き直す。為替レートを持つのはBankなので
-    # ココには書かないようにする。引数bankを追加
     def reduce(self, bank, to: str):
         rate = bank.rate(self.currency, to)
         return Money(self.amount / rate, to)
