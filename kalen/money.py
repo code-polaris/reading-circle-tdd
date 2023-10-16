@@ -4,7 +4,7 @@ class Expression(ABC):
     @abstractmethod
     def reduce(self, to: str):
         pass
-# 教科書通り新しいクラスを作って対応してみる
+
 class Pair:
     def __init__(self, fromcurrency: str, to: str):
         self.fromcurrency = fromcurrency
@@ -13,7 +13,6 @@ class Pair:
         pair = something
         return self.fromcurrency == pair.fromcurrency and self.to == pair.to
     
-# ChatGPTに教えてもらったハッシュを扱う特殊メソッドを利用してみる
     def __hash__(self):
         return hash(0)
 
@@ -26,7 +25,6 @@ class Bank:
 
         sum = source
         return sum.reduce(to)
-    # BankのAddRateメソッドの戻り値を追加、rateの内容を変更
     def addRate(self, fromcurrency: str, to: str, rate: int):
         curr_rate = Pair(fromcurrency, to)
         self.rates[curr_rate] = rate
@@ -50,11 +48,12 @@ class Sum(Expression):
     def addend(self):
         return self.__addend
     
-    # reduceメソッドでのamount導出方法を修正、引数を追加
     def reduce(self, bank, to):
-        # amount = self.__augend.amount + self.__addend.amount
         amount = self.augend.reduce(bank, to).amount() + self.addend.reduce(bank, to).amount()
         return Money(amount, to)
+    # addメソッドを空実装
+    def __add__(self, addend):
+        pass
     
 # ---------------------
 
