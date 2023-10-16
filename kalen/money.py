@@ -5,6 +5,10 @@ class Expression(ABC):
     def reduce(self, to: str):
         pass
 
+    @abstractmethod
+    def __add__(self, addend):
+        pass
+
 class Pair:
     def __init__(self, fromcurrency: str, to: str):
         self.fromcurrency = fromcurrency
@@ -19,12 +23,15 @@ class Pair:
 # ---------------------
 
 class Bank:
+    def __init__(self):
+        self.rates = {}
+    
     def reduce(self, source: Exception, to: str):
         if type(source) is Money:
             return source
 
         sum = source
-        return sum.reduce(to)
+        return sum.reduce(self, to)
     def addRate(self, fromcurrency: str, to: str, rate: int):
         curr_rate = Pair(fromcurrency, to)
         self.rates[curr_rate] = rate
@@ -49,7 +56,7 @@ class Sum(Expression):
         return self.__addend
     
     def reduce(self, bank, to):
-        amount = self.augend.reduce(bank, to).amount() + self.addend.reduce(bank, to).amount()
+        amount = self.augend.reduce(bank, to).amount + self.addend.reduce(bank, to).amount
         return Money(amount, to)
     # addメソッドを空実装
     def __add__(self, addend):
