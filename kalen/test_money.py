@@ -48,3 +48,11 @@ class TestMoney:
         result = bank.reduce(Money.franc(2), "USD")
         assert Money.dollar(1) == result
 
+    def test_MixedAddition(self):
+        fiveBucks = Money.dollar(5)
+        tenFrancs = Money.franc(10)
+        bank = Bank()
+        bank.addRate("CHF", "USD", 2)
+        result = bank.reduce(fiveBucks + tenFrancs, "USD")
+        assert Money.dollar(10) == result
+

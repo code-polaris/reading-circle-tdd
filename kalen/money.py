@@ -50,8 +50,10 @@ class Sum(Expression):
     def addend(self):
         return self.__addend
     
-    def reduce(self, to):
-        amount = self.__augend.amount + self.__addend.amount
+    # reduceメソッドでのamount導出方法を修正、引数を追加
+    def reduce(self, bank, to):
+        # amount = self.__augend.amount + self.__addend.amount
+        amount = self.augend.reduce(bank, to).amount() + self.addend.reduce(bank, to).amount()
         return Money(amount, to)
     
 # ---------------------
