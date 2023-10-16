@@ -89,3 +89,4 @@ class Money(Expression):
     def reduce(self, bank, to: str):
         rate = bank.rate(self.currency, to)
         return Money(self.amount / rate, to)
+    
