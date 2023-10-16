@@ -4,6 +4,18 @@ class Expression(ABC):
     @abstractmethod
     def reduce(self, to: str):
         pass
+# 教科書通り新しいクラスを作って対応してみる
+class Pair:
+    def __init__(self, fromcurrency: str, to: str):
+        self.fromcurrency = fromcurrency
+        self.to = to
+    def __eq__(self, something):
+        pair = something
+        return self.fromcurrency == pair.fromcurrency and self.to == pair.to
+    
+# ChatGPTに教えてもらったハッシュを扱う特殊メソッドを利用してみる
+    def __hash__(self):
+        return hash(0)
 
 # ---------------------
 
@@ -18,10 +30,9 @@ class Bank:
     def addRate(self, fromcurrency: str, to: str, rate: int):
         pass
 
-    # Bankに為替レートを扱うrateメソッドを追加
     def rate(self, fromcurrency: str, to: str):
         return (2 if fromcurrency == "CHF" and to == "USD" else 1)
-    # ※この書き方は三項演算子と言う。
+    # ※三項演算子難しい(´・ω・｀)
 
 
 # ---------------------
