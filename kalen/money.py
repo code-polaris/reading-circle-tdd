@@ -4,10 +4,11 @@ class Expression(ABC):
     pass
 
 # ---------------------
-
+# reduceメソッドの中身をSumクラスに移す
 class Bank:
     def reduce(self, source: Exception, to: str):
-        return Money.dollar(10)
+        sum = source
+        return sum.reduce(to)
 
 # ---------------------
 
@@ -21,6 +22,10 @@ class Sum(Expression):
     @property
     def addend(self):
         return self.__addend
+    # reduceメソッドはMoneyを返す
+    def reduce(self, to):
+        amount = self.__augend.amount + self.__addend.amount
+        return Money(amount, to)
     
 # ---------------------
 
