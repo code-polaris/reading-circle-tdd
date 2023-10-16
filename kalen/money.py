@@ -1,10 +1,16 @@
+
+# reduceメソッドを統合するためにExpressionインターフェイスに
+# アブストラクトメソッドで設定
+
 from abc import ABC, abstractmethod
-# 新しいクラスを追加
 class Expression(ABC):
-    pass
+
+    @abstractmethod
+    def reduce(self, to: str):
+        pass
 
 # ---------------------
-# 型を確認するためのif文を追加
+# reduceメソッドを強制
 class Bank:
     def reduce(self, source: Exception, to: str):
         if type(source) is Money:
@@ -12,6 +18,10 @@ class Bank:
 
         sum = source
         return sum.reduce(to)
+    
+    def reduce(self, source: Exception, to: str):
+        return source.reduce(to)
+
 
 # ---------------------
 
@@ -25,7 +35,7 @@ class Sum(Expression):
     @property
     def addend(self):
         return self.__addend
-    # reduceメソッドはMoneyを返す
+    
     def reduce(self, to):
         amount = self.__augend.amount + self.__addend.amount
         return Money(amount, to)
@@ -54,10 +64,15 @@ class Money(Expression):
         return Money(amount, "CHF")
 
     def __eq__(self, object) -> bool:
-        return self.amount == object.amount and self.currency == object.currency
+        return self.__dict__ == object.__dict__
+        #return self.amount == object.amount and self.currency == object.currency
 
     def __add__(self, addend):
         return Sum(self, addend)
 
     def times(self, multiplier):
         return Money(self.amount * multiplier, self.currency)
+        
+    # reduceメソッドを強制
+    def reduce(self, to: str):
+        return self
