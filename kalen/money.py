@@ -4,9 +4,12 @@ class Expression(ABC):
     pass
 
 # ---------------------
-# reduceメソッドの中身をSumクラスに移す
+# 型を確認するためのif文を追加
 class Bank:
     def reduce(self, source: Exception, to: str):
+        if type(source) is Money:
+            return source
+
         sum = source
         return sum.reduce(to)
 
