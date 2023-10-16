@@ -1,7 +1,3 @@
-
-# reduceメソッドを統合するためにExpressionインターフェイスに
-# アブストラクトメソッドで設定
-
 from abc import ABC, abstractmethod
 class Expression(ABC):
 
@@ -10,7 +6,7 @@ class Expression(ABC):
         pass
 
 # ---------------------
-# reduceメソッドを強制
+
 class Bank:
     def reduce(self, source: Exception, to: str):
         if type(source) is Money:
@@ -19,11 +15,13 @@ class Bank:
         sum = source
         return sum.reduce(to)
     
-    def reduce(self, source: Exception, to: str):
-        return source.reduce(to)
-    # 新しいメソッドを空実装する
     def addRate(self, fromcurrency: str, to: str, rate: int):
         pass
+
+    # Bankに為替レートを扱うrateメソッドを追加
+    def rate(self, fromcurrency: str, to: str):
+        return (2 if fromcurrency == "CHF" and to == "USD" else 1)
+    # ※この書き方は三項演算子と言う。
 
 
 # ---------------------
@@ -68,7 +66,6 @@ class Money(Expression):
 
     def __eq__(self, object) -> bool:
         return self.__dict__ == object.__dict__
-        #return self.amount == object.amount and self.currency == object.currency
 
     def __add__(self, addend):
         return Sum(self, addend)
@@ -76,6 +73,8 @@ class Money(Expression):
     def times(self, multiplier):
         return Money(self.amount * multiplier, self.currency)
         
-    # reduceメソッドを強制
-    def reduce(self, to: str):
-        return self
+    # Moneyのreduceの戻り値を書き直す。為替レートを持つのはBankなので
+    # ココには書かないようにする。引数bankを追加
+    def reduce(self, bank, to: str):
+        rate = bank.rate(self.currency, to)
+        return Money(self.amount / rate, to)
