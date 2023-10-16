@@ -21,6 +21,9 @@ class Bank:
     
     def reduce(self, source: Exception, to: str):
         return source.reduce(to)
+    # 新しいメソッドを空実装する
+    def addRate(self, fromcurrency: str, to: str, rate: int):
+        pass
 
 
 # ---------------------
