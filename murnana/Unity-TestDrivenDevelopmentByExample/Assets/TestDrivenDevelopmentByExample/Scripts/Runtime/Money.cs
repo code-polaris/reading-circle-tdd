@@ -36,6 +36,19 @@ namespace TDD
             return m_Currency;
         }
 
+        /// <summary>
+        /// 通貨を加算します
+        /// </summary>
+        /// <param name="added">加算する通貨</param>
+        /// <returns>加算結果(新規インスタンス)</returns>
+        /// <remarks>
+        /// <para>インスタンス自身には何も影響を与えません</para>
+        /// </remarks>
+        public Money Plus(Money added)
+        {
+            return new Money(amount: m_Amount + added.m_Amount, currency: m_Currency);
+        }
+
         #region Equality members
 
         /// <inheritdoc />

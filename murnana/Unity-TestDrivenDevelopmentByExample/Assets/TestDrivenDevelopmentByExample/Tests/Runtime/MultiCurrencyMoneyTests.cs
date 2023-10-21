@@ -50,5 +50,16 @@ namespace TDD.Tests
                 expression: Is.EqualTo ("CHF")
             );
         }
+
+        [Test]
+        [Description("足し算を行うテスト")]
+        public void SimpleAddition()
+        {
+            var sum = Money.Dollar(5).Plus(Money.Dollar(5));
+            Assert.That(
+                actual: sum,
+                expression: Is.EqualTo(Money.Dollar(10))
+            );
+        }
     }
 }
