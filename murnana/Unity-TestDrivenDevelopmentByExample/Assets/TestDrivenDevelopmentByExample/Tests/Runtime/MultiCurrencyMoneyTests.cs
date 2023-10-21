@@ -33,30 +33,8 @@ namespace TDD.Tests
                 expression: Is.False
             );
             Assert.That (
-                actual: Money.Franc (5).Equals (Money.Franc (5)),
-                expression: Is.True
-            );
-            Assert.That (
-                actual: Money.Franc (5).Equals (Money.Franc (6)),
-                expression: Is.False
-            );
-            Assert.That (
                 actual: Money.Franc (5).Equals (Money.Dollar (5)),
                 expression: Is.False
-            );
-        }
-
-        [Test]
-        public void FrancMultiplication()
-        {
-            Money five = Money.Franc (5);
-            Assert.That (
-                actual: five.Times (2),
-                expression: Is.EqualTo (Money.Franc (10))
-            );
-            Assert.That (
-                actual: five.Times (3),
-                expression: Is.EqualTo (Money.Franc (15))
             );
         }
 
@@ -70,15 +48,6 @@ namespace TDD.Tests
             Assert.That (
                 actual: Money.Franc (1).Currency(),
                 expression: Is.EqualTo ("CHF")
-            );
-        }
-
-        [Test]
-        public void DifferentClassEquality()
-        {
-            Assert.That (
-                actual: new Money (amount: 10, currency: "CHF"),
-                expression: Is.EqualTo (new Franc (amount: 10, currency: "CHF"))
             );
         }
     }
