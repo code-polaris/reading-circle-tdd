@@ -2,7 +2,8 @@ using System;
 
 namespace TDD
 {
-    public class Money : IEquatable<Money>
+    public class Money : IEquatable<Money>,
+                         IExpression
     {
         protected readonly int m_Amount;
         protected readonly string m_Currency;
@@ -44,7 +45,7 @@ namespace TDD
         /// <remarks>
         /// <para>インスタンス自身には何も影響を与えません</para>
         /// </remarks>
-        public Money Plus(Money added)
+        public IExpression Plus(Money added)
         {
             return new Money(amount: m_Amount + added.m_Amount, currency: m_Currency);
         }

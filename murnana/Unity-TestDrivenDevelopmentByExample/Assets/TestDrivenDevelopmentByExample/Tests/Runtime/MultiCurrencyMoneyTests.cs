@@ -55,9 +55,12 @@ namespace TDD.Tests
         [Description("足し算を行うテスト")]
         public void SimpleAddition()
         {
-            var sum = Money.Dollar(5).Plus(Money.Dollar(5));
+            var five    = Money.Dollar(5);                      // 5ドルを意味するオブジェクトの生成
+            var sum     = five.Plus(five);                      // 二つの Money の和は Expression (式) インスタンスになる
+            var bank    = new Bank();                           // 通貨の式を解釈する Imposter、銀行を生成する
+            var reduced = bank.Reduced(source: sum, to: "USD"); // 銀行が、Expression を解釈して結果を返す
             Assert.That(
-                actual: sum,
+                actual: reduced,
                 expression: Is.EqualTo(Money.Dollar(10))
             );
         }
