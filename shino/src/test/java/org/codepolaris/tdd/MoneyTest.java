@@ -1,11 +1,11 @@
 package org.codepolaris.tdd;
 
-import org.codepolaris.tdd.utils.Currency;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.codepolaris.tdd.Money.dollar;
 import static org.codepolaris.tdd.utils.Currency.USD;
+import static org.codepolaris.tdd.utils.Currency.CHF;
 
 class MoneyTest {
 
@@ -26,7 +26,7 @@ class MoneyTest {
   @Test
   void testCurrency() {
     assertThat(dollar(1).currency()).isEqualTo(USD);
-    assertThat(Money.franc(1).currency()).isEqualTo(Currency.CHF);
+    assertThat(Money.franc(1).currency()).isEqualTo(CHF);
   }
 
   @Test
@@ -65,7 +65,7 @@ class MoneyTest {
   @Test
   void testReduceMoneyDifferentCurrency() {
     Bank bank = new Bank();
-    bank.addRate(Currency.CHF, USD, 2);
+    bank.addRate(CHF, USD, 2);
     Money result = bank.reduce(Money.franc(2), USD);
     assertThat(result).isEqualTo(Money.dollar(1));
   }
@@ -75,4 +75,13 @@ class MoneyTest {
     assertThat(new Bank().rate(USD, USD)).isEqualTo(1);
   }
 
+  @Test
+  void testMixedAddition() {
+    Expression fiveBucks = Money.dollar(5);
+    Expression tenFrancs = Money.franc(10);
+    Bank bank = new Bank();
+    bank.addRate(CHF, USD, 2);
+    Money result = bank.reduce(fiveBucks.plus(tenFrancs), USD);
+    assertThat(result).isEqualTo(Money.dollar(10));
+  }
 }
