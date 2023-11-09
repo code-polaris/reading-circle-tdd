@@ -2,35 +2,52 @@ using System;
 
 namespace TDD
 {
-    public abstract class Money : IEquatable<Money>
+    public class Money : IEquatable<Money>,
+                         IExpression
     {
         protected readonly int m_Amount;
-        private readonly string m_Currency;
+        protected readonly string m_Currency;
 
 
         public static Money Dollar(int amount)
         {
-            return new Dollar (amount: amount, currency: "USD");
+            return new Money (amount: amount, currency: "USD");
         }
 
         public static Money Franc(int amount)
         {
-            return new Franc (amount, "CHF");
+            return new Money (amount, "CHF");
         }
 
 
-        protected Money(int amount, string currency)
+        public Money(int amount, string currency)
         {
             m_Amount   = amount;
             m_Currency = currency;
         }
 
 
-        public abstract Money Times(int multiplier);
+        public Money Times(int multiplier)
+        {
+            return new Money (amount: m_Amount * multiplier, currency: m_Currency);
+        }
 
         public string Currency()
         {
             return m_Currency;
+        }
+
+        /// <summary>
+        /// 通貨を加算します
+        /// </summary>
+        /// <param name="added">加算する通貨</param>
+        /// <returns>加算結果(新規インスタンス)</returns>
+        /// <remarks>
+        /// <para>インスタンス自身には何も影響を与えません</para>
+        /// </remarks>
+        public IExpression Plus(Money added)
+        {
+            return new Money(amount: m_Amount + added.m_Amount, currency: m_Currency);
         }
 
         #region Equality members
@@ -38,12 +55,23 @@ namespace TDD
         /// <inheritdoc />
         public bool Equals(Money other)
         {
-            if (GetType() != other!.GetType())
+            if (other == null)
             {
                 return false;
             }
 
-            return m_Amount == other!.m_Amount;
+            return (Currency() == other.Currency())
+                && (m_Amount == other.m_Amount);
+        }
+
+        #endregion
+
+        #region Overrides of Object
+
+        /// <inheritdoc />
+        public override string ToString()
+        {
+            return $"{m_Amount} {m_Currency}";
         }
 
         #endregion
