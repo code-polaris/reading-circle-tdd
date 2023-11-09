@@ -1,5 +1,6 @@
 from money import Money
 from money import Bank
+from money import Sum
 
 class TestMoney:
     def test_multiplication(self):
@@ -22,4 +23,36 @@ class TestMoney:
         bank = Bank()
         reduce = bank.reduce(sum, "USD")
         assert Money.dollar(10) == reduce
+
+    def test_PlusReturnsSum(self):
+        five = Money.dollar(5)
+        result = five + five
+        sum = result
+        assert five == sum.augend
+        assert five == sum.addend
+
+    def test_ReduceSum(self):
+        sum = Sum(Money.dollar(3), Money.dollar(4))
+        bank = Bank()
+        result = bank.reduce(sum, "USD")
+        assert Money.dollar(7) == result
+
+    def test_ReduceMoney(self):
+        bank = Bank()
+        result = bank.reduce(Money.dollar(1), "USD")
+        assert Money.dollar(1) == result
+
+    def rest_ReducemoneyDifferentCurrency(self):
+        bank = Bank()
+        bank.addRate("CHF", "USD", 2)
+        result = bank.reduce(Money.franc(2), "USD")
+        assert Money.dollar(1) == result
+
+    def test_MixedAddition(self):
+        fiveBucks = Money.dollar(5)
+        tenFrancs = Money.franc(10)
+        bank = Bank()
+        bank.addRate("CHF", "USD", 2)
+        result = bank.reduce(fiveBucks + tenFrancs, "USD")
+        assert Money.dollar(10) == result
 
