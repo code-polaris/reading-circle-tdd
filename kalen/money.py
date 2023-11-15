@@ -8,6 +8,10 @@ class Expression(ABC):
     @abstractmethod
     def __add__(self, addend):
         pass
+    # 抽象クラスにもtimesメソッドを設定
+    @abstractmethod
+    def __mul__(self, multiplier: int):
+        pass
 
 class Pair:
     def __init__(self, fromcurrency: str, to: str):
@@ -58,9 +62,12 @@ class Sum(Expression):
     def reduce(self, bank, to):
         amount = self.augend.reduce(bank, to).amount + self.addend.reduce(bank, to).amount
         return Money(amount, to)
-    # 空実装からSumオブジェクトを返すモノに変更
+    
     def __add__(self, addend):
         return Sum(self, addend)
+    # timesメソッドを追加
+    def __mul__(self, multiplier: int):
+        return Sum(self.augend * multiplier, self.addend * multiplier)
     
 # ---------------------
 
@@ -91,7 +98,7 @@ class Money(Expression):
     def __add__(self, addend):
         return Sum(self, addend)
 
-    def times(self, multiplier):
+    def __mul__(self, multiplier: int):
         return Money(self.amount * multiplier, self.currency)
         
     def reduce(self, bank, to: str):
