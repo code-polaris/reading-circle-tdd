@@ -58,9 +58,9 @@ class Sum(Expression):
     def reduce(self, bank, to):
         amount = self.augend.reduce(bank, to).amount + self.addend.reduce(bank, to).amount
         return Money(amount, to)
-    # addメソッドを空実装
+    # 空実装からSumオブジェクトを返すモノに変更
     def __add__(self, addend):
-        pass
+        return Sum(self, addend)
     
 # ---------------------
 
