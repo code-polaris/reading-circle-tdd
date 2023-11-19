@@ -5,9 +5,21 @@ namespace TDD
     public class Money : IEquatable<Money>,
                          IExpression
     {
-        protected readonly int m_Amount;
-        protected readonly string m_Currency;
+        /// <summary>
+        /// 通貨
+        /// </summary>
+        private readonly string m_Currency;
 
+        /// <summary>
+        /// 通貨の数
+        /// </summary>
+        public int Amount { get; }
+
+        public Money(int amount, string currency)
+        {
+            Amount     = amount;
+            m_Currency = currency;
+        }
 
         public static Money Dollar(int amount)
         {
@@ -19,17 +31,9 @@ namespace TDD
             return new Money (amount, "CHF");
         }
 
-
-        public Money(int amount, string currency)
-        {
-            m_Amount   = amount;
-            m_Currency = currency;
-        }
-
-
         public Money Times(int multiplier)
         {
-            return new Money (amount: m_Amount * multiplier, currency: m_Currency);
+            return new Money (amount: Amount * multiplier, currency: m_Currency);
         }
 
         public string Currency()
@@ -47,8 +51,18 @@ namespace TDD
         /// </remarks>
         public IExpression Plus(Money added)
         {
-            return new Money(amount: m_Amount + added.m_Amount, currency: m_Currency);
+            return new Sum(augend: this, addend: added);
         }
+
+        #region Implementation of IExpression
+
+        /// <inheritdoc />
+        public Money Reduced(string to)
+        {
+            return this;
+        }
+
+        #endregion
 
         #region Equality members
 
@@ -61,7 +75,7 @@ namespace TDD
             }
 
             return (Currency() == other.Currency())
-                && (m_Amount == other.m_Amount);
+                && (Amount == other.Amount);
         }
 
         #endregion
@@ -71,7 +85,7 @@ namespace TDD
         /// <inheritdoc />
         public override string ToString()
         {
-            return $"{m_Amount} {m_Currency}";
+            return $"{Amount} {m_Currency}";
         }
 
         #endregion

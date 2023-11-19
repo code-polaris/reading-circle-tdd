@@ -1,3 +1,4 @@
+using System.Security.Cryptography;
 using NUnit.Framework;
 
 namespace TDD.Tests
@@ -63,6 +64,35 @@ namespace TDD.Tests
                 actual: reduced,
                 expression: Is.EqualTo(Money.Dollar(10))
             );
+        }
+
+        [Test]
+        [Description("TDD.Money.Plus の内部テスト")]
+        public void PlusReturnSum()
+        {
+            var five   = Money.Dollar(5);
+            var result = five.Plus(five);
+            var sum    = (Sum)result;
+            Assert.That(actual: five, expression: Is.EqualTo(sum.Augend));
+            Assert.That(actual: five, expression: Is.EqualTo(sum.Addend));
+        }
+
+        [Test]
+        [Description("Sum の結果は Bank で特定の通貨として変換される")]
+        public void ReduceSum()
+        {
+            var sum    = new Sum(augend: Money.Dollar(3), addend: Money.Dollar(4));
+            var bank   = new Bank();
+            var result = bank.Reduced(source: sum, to: "USD");
+            Assert.That(actual: Money.Dollar(7), expression: Is.EqualTo(result));
+        }
+
+        [Test]
+        public void ReduceMoney()
+        {
+            var bank   = new Bank();
+            var result = bank.Reduced(source: Money.Dollar(1), to: "USD");
+            Assert.That(actual: Money.Dollar(1), expression: Is.EqualTo(result));
         }
     }
 }

@@ -13,7 +13,7 @@
         /// <returns></returns>
         public Money Reduced(IExpression source, string to)
         {
-            return Money.Dollar(10);
+            return source.Reduced(to);
         }
     }
 }
