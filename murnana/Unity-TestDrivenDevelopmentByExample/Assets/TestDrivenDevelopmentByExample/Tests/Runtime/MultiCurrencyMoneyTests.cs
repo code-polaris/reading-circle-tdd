@@ -122,5 +122,31 @@ namespace TDD.Tests
             var result    = bank.Reduced(source: fiveBucks.Plus(tenFrancs), to: "USD");
             Assert.That(actual: Money.Dollar(10), expression: Is.EqualTo(result));
         }
-    }
+
+        [Test]
+        [Description("SumクラスのPlus挙動")]
+        public void SumPlusMoney()
+        {
+            IExpression fiveBucks = Money.Dollar(5);
+            IExpression tenFrancs = Money.Franc(10);
+            Bank        bank      = new Bank();
+            bank.AddRate(from: "CHF", to: "USD", rate: 2);
+            IExpression sum    = new Sum(augend: fiveBucks, addend: tenFrancs).Plus(fiveBucks);
+            Money       result = bank.Reduced(source: sum, to: "USD");
+            Assert.That(actual: Money.Dollar(15), expression: Is.EqualTo(result));
+        }
+
+        [Test]
+        [Description("Expression.Times")]
+        public void SumTimes()
+        {
+            IExpression fiveBucks = Money.Dollar(5);
+            IExpression tenFrancs = Money.Franc(10);
+            Bank        bank      = new Bank();
+            bank.AddRate(from: "CHF", to: "USD", rate: 2);
+            IExpression sum    = new Sum(augend: fiveBucks, addend: tenFrancs).Times(2);
+            Money       result = bank.Reduced(source: sum, to: "USD");
+            Assert.That(actual: Money.Dollar(20), expression: Is.EqualTo(result));
+        }
+    }  
 }

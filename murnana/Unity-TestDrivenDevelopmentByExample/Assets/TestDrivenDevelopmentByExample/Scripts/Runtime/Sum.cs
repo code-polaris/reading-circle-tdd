@@ -28,7 +28,6 @@ namespace TDD
         /// </summary>
         public IExpression Addend { get; }
 
-
         #region Implementation of IExpression
 
         /// <inheritdoc />
@@ -42,9 +41,14 @@ namespace TDD
         /// <inheritdoc />
         public IExpression Plus(IExpression added)
         {
-            // 教科書では null を返却しているが、
-            // 個人的には、未実装を占める「System.NotImplementedException」例外を飛ばすほうが明文化されると思う
-            throw new NotImplementedException();
+            return new Sum(augend: this, addend: added);
+        }
+
+
+        /// <inheritdoc />
+        public IExpression Times(int multiplier)
+        {
+            return new Sum(augend: Augend.Times(multiplier), addend: Addend.Times(multiplier));
         }
 
         #endregion

@@ -22,5 +22,7 @@
         /// <para>インスタンス自身には何も影響を与えません</para>
         /// </remarks>
         public IExpression Plus(IExpression added);
+
+        IExpression Times(int multiplier);
     }
 }
