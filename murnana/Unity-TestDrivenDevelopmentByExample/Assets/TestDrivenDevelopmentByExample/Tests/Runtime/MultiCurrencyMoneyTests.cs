@@ -110,5 +110,17 @@ namespace TDD.Tests
         {
             Assert.That(actual: 1, expression: Is.EqualTo(new Bank().GetRate(from: "USD", to: "USD")));
         }
+
+        [Test]
+        [Description("USD 5 + CHF 10 = USD 5")]
+        public void MixedAddition()
+        {
+            IExpression fiveBucks = Money.Dollar(5);
+            IExpression tenFrancs = Money.Franc(10);
+            var         bank      = new Bank();
+            bank.AddRate(from: "CHF", to: "USD", rate: 2);
+            var result    = bank.Reduced(source: fiveBucks.Plus(tenFrancs), to: "USD");
+            Assert.That(actual: Money.Dollar(10), expression: Is.EqualTo(result));
+        }
     }
 }
