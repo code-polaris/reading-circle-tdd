@@ -30,7 +30,7 @@
         #region Implementation of IExpression
 
         /// <inheritdoc />
-        public Money Reduced(string to)
+        public Money Reduced(Bank bank, string to)
         {
             var amount = Augend.Amount + Addend.Amount;
             return new Money(amount: amount, currency: to);

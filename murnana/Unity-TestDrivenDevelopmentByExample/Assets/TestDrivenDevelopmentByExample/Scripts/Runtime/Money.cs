@@ -57,9 +57,10 @@ namespace TDD
         #region Implementation of IExpression
 
         /// <inheritdoc />
-        public Money Reduced(string to)
+        public Money Reduced(Bank bank, string to)
         {
-            return this;
+            var rate = bank.GetRate(from: m_Currency, to: to);
+            return new Money(amount: Amount / rate, currency: to);
         }
 
         #endregion

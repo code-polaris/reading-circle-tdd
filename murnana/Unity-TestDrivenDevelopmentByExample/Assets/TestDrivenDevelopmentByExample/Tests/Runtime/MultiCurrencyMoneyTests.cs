@@ -1,4 +1,3 @@
-using System.Security.Cryptography;
 using NUnit.Framework;
 
 namespace TDD.Tests
@@ -6,35 +5,35 @@ namespace TDD.Tests
     public sealed class MultiCurrencyMoneyTests
     {
         /// <summary>
-        ///     $5 * 2 = $10
+        /// $5 * 2 = $10
         /// </summary>
         [Test]
         public void Multiplication()
         {
-            Money five = Money.Dollar (5);
-            Assert.That (
-                actual: five.Times (2),
-                expression: Is.EqualTo (Money.Dollar (10))
+            var five = Money.Dollar(5);
+            Assert.That(
+                actual: five.Times(2),
+                expression: Is.EqualTo(Money.Dollar(10))
             );
-            Assert.That (
-                actual: five.Times (3),
-                expression: Is.EqualTo (Money.Dollar (15))
+            Assert.That(
+                actual: five.Times(3),
+                expression: Is.EqualTo(Money.Dollar(15))
             );
         }
 
         [Test]
         public void Equal()
         {
-            Assert.That (
-                actual: Money.Dollar (5).Equals (Money.Dollar (5)),
+            Assert.That(
+                actual: Money.Dollar(5).Equals(Money.Dollar(5)),
                 expression: Is.True
             );
-            Assert.That (
-                actual: Money.Dollar (5).Equals (Money.Dollar (6)),
+            Assert.That(
+                actual: Money.Dollar(5).Equals(Money.Dollar(6)),
                 expression: Is.False
             );
-            Assert.That (
-                actual: Money.Franc (5).Equals (Money.Dollar (5)),
+            Assert.That(
+                actual: Money.Franc(5).Equals(Money.Dollar(5)),
                 expression: Is.False
             );
         }
@@ -42,13 +41,13 @@ namespace TDD.Tests
         [Test]
         public void Currency()
         {
-            Assert.That (
-                actual: Money.Dollar (1).Currency(),
-                expression: Is.EqualTo ("USD")
+            Assert.That(
+                actual: Money.Dollar(1).Currency(),
+                expression: Is.EqualTo("USD")
             );
-            Assert.That (
-                actual: Money.Franc (1).Currency(),
-                expression: Is.EqualTo ("CHF")
+            Assert.That(
+                actual: Money.Franc(1).Currency(),
+                expression: Is.EqualTo("CHF")
             );
         }
 
@@ -93,6 +92,23 @@ namespace TDD.Tests
             var bank   = new Bank();
             var result = bank.Reduced(source: Money.Dollar(1), to: "USD");
             Assert.That(actual: Money.Dollar(1), expression: Is.EqualTo(result));
+        }
+
+        [Test]
+        [Description("異なる通貨への変換を行う")]
+        public void ReduceMoneyDifferentCurrency()
+        {
+            var bank = new Bank();
+            bank.AddRate(from: "CHF", to: "USD", rate: 2);
+            var result = bank.Reduced(source: Money.Franc(2), to: "USD");
+            Assert.That(actual: Money.Dollar(1), expression: Is.EqualTo(result));
+        }
+
+        [Test]
+        [Description("同一通貨のレートは常に1")]
+        public void IdentityRate()
+        {
+            Assert.That(actual: 1, expression: Is.EqualTo(new Bank().GetRate(from: "USD", to: "USD")));
         }
     }
 }
