@@ -1,73 +1,77 @@
 package org.codepolaris.tdd;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.codepolaris.tdd.Money.dollar;
-import static org.codepolaris.tdd.utils.Currency.USD;
 import static org.codepolaris.tdd.utils.Currency.CHF;
+import static org.codepolaris.tdd.utils.Currency.USD;
 
 class MoneyTest {
 
+  private static final Money FIVE_DOLLAR = Money.dollar(5);
+  private static final Money TEN_FRANC = Money.franc(10);
+  public static final Money ONE_DOLLAR = Money.dollar(1);
+  private Bank bank;
+
+  @BeforeEach
+  public void setUp() {
+    bank = new Bank();
+    bank.addRate(CHF, USD, 2);
+  }
+
   @Test
   void testMultiplication() {
-    Money five = dollar(5);
-    assertThat(five.times(2)).isEqualTo(dollar(10));
-    assertThat(five.times(3)).isEqualTo(dollar(15));
+    Money five = FIVE_DOLLAR;
+    assertThat(five.times(2)).isEqualTo(Money.dollar(10));
+    assertThat(five.times(3)).isEqualTo(Money.dollar(15));
   }
 
   @Test
   void testEquality() {
-    assertThat(dollar(5).equals(dollar(5))).isTrue();
-    assertThat(dollar(5).equals(dollar(6))).isFalse();
-    assertThat(Money.franc(5).equals(dollar(5))).isFalse();
+    assertThat(Money.dollar(5).equals(Money.dollar(5))).isTrue();
+    assertThat(Money.dollar(5).equals(Money.dollar(6))).isFalse();
+    assertThat(Money.franc(5).equals(Money.dollar(5))).isFalse();
   }
 
   @Test
   void testCurrency() {
-    assertThat(dollar(1).currency()).isEqualTo(USD);
+    assertThat(Money.dollar(1).currency()).isEqualTo(USD);
     assertThat(Money.franc(1).currency()).isEqualTo(CHF);
   }
 
   @Test
   void testSimpleAddition() {
-    Money five = dollar(5);
-    Expression sum = five.plus(five);
-    Bank bank = new Bank();
+    Expression sum = FIVE_DOLLAR.plus(FIVE_DOLLAR);
     Money reduced = bank.reduce(sum, USD);
-    assertThat(reduced).isEqualTo(dollar(10));
+    assertThat(reduced).isEqualTo(Money.dollar(10));
   }
 
   @Test
   void testPlusReturnsSum() {
-    Money five = dollar(5);
-    Expression result = five.plus(five);
+    Expression result = FIVE_DOLLAR.plus(FIVE_DOLLAR);
     Sum sum = (Sum) result;
-    assertThat(sum.augend).isEqualTo(five);
-    assertThat(sum.addend).isEqualTo(five);
+    assertThat(sum.augend).isEqualTo(FIVE_DOLLAR);
+    assertThat(sum.addend).isEqualTo(FIVE_DOLLAR);
   }
 
   @Test
   void testReduceSum() {
-    Expression sum = new Sum(dollar(3), dollar(4));
-    Bank bank = new Bank();
+    Expression sum = new Sum(Money.dollar(3), Money.dollar(4));
     Money result = bank.reduce(sum, USD);
     assertThat(result).isEqualTo(Money.dollar(7));
   }
 
   @Test
   void testReduceMoney() {
-    Bank bank = new Bank();
-    Money result = bank.reduce(Money.dollar(1), USD);
-    assertThat(result).isEqualTo(Money.dollar(1));
+    Money result = bank.reduce(ONE_DOLLAR, USD);
+    assertThat(result).isEqualTo(ONE_DOLLAR);
   }
 
   @Test
   void testReduceMoneyDifferentCurrency() {
-    Bank bank = new Bank();
-    bank.addRate(CHF, USD, 2);
     Money result = bank.reduce(Money.franc(2), USD);
-    assertThat(result).isEqualTo(Money.dollar(1));
+    assertThat(result).isEqualTo(ONE_DOLLAR);
   }
 
   @Test
@@ -77,11 +81,21 @@ class MoneyTest {
 
   @Test
   void testMixedAddition() {
-    Expression fiveBucks = Money.dollar(5);
-    Expression tenFrancs = Money.franc(10);
-    Bank bank = new Bank();
-    bank.addRate(CHF, USD, 2);
-    Money result = bank.reduce(fiveBucks.plus(tenFrancs), USD);
+    Money result = bank.reduce(FIVE_DOLLAR.plus(TEN_FRANC), USD);
     assertThat(result).isEqualTo(Money.dollar(10));
+  }
+
+  @Test
+  void testSumPlusMoney() {
+    Expression sum = new Sum(FIVE_DOLLAR, TEN_FRANC).plus(FIVE_DOLLAR);
+    Money result = bank.reduce(sum, USD);
+    assertThat(result).isEqualTo(Money.dollar(15));
+  }
+
+  @Test
+  void testSumTimes() {
+    Expression sum = new Sum(FIVE_DOLLAR, TEN_FRANC).times(2);
+    Money result = bank.reduce(sum, USD);
+    assertThat(result).isEqualTo(Money.dollar(20));
   }
 }
