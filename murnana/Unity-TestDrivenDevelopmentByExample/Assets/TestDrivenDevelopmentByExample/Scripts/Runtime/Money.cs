@@ -5,9 +5,21 @@ namespace TDD
     public class Money : IEquatable<Money>,
                          IExpression
     {
-        protected readonly int m_Amount;
-        protected readonly string m_Currency;
+        /// <summary>
+        /// 通貨
+        /// </summary>
+        private readonly string m_Currency;
 
+        /// <summary>
+        /// 通貨の数
+        /// </summary>
+        public int Amount { get; }
+
+        public Money(int amount, string currency)
+        {
+            Amount     = amount;
+            m_Currency = currency;
+        }
 
         public static Money Dollar(int amount)
         {
@@ -19,17 +31,9 @@ namespace TDD
             return new Money (amount, "CHF");
         }
 
-
-        public Money(int amount, string currency)
+        public IExpression Times(int multiplier)
         {
-            m_Amount   = amount;
-            m_Currency = currency;
-        }
-
-
-        public Money Times(int multiplier)
-        {
-            return new Money (amount: m_Amount * multiplier, currency: m_Currency);
+            return new Money (amount: Amount * multiplier, currency: m_Currency);
         }
 
         public string Currency()
@@ -37,18 +41,22 @@ namespace TDD
             return m_Currency;
         }
 
-        /// <summary>
-        /// 通貨を加算します
-        /// </summary>
-        /// <param name="added">加算する通貨</param>
-        /// <returns>加算結果(新規インスタンス)</returns>
-        /// <remarks>
-        /// <para>インスタンス自身には何も影響を与えません</para>
-        /// </remarks>
-        public IExpression Plus(Money added)
+        #region Implementation of IExpression
+
+        /// <inheritdoc />
+        public Money Reduced(Bank bank, string to)
         {
-            return new Money(amount: m_Amount + added.m_Amount, currency: m_Currency);
+            var rate = bank.GetRate(from: m_Currency, to: to);
+            return new Money(amount: Amount / rate, currency: to);
         }
+
+        /// <inheritdoc />
+        public IExpression Plus(IExpression added)
+        {
+            return new Sum(augend: this, addend: added);
+        }
+
+        #endregion
 
         #region Equality members
 
@@ -61,7 +69,7 @@ namespace TDD
             }
 
             return (Currency() == other.Currency())
-                && (m_Amount == other.m_Amount);
+                && (Amount == other.Amount);
         }
 
         #endregion
@@ -71,7 +79,7 @@ namespace TDD
         /// <inheritdoc />
         public override string ToString()
         {
-            return $"{m_Amount} {m_Currency}";
+            return $"{Amount} {m_Currency}";
         }
 
         #endregion
