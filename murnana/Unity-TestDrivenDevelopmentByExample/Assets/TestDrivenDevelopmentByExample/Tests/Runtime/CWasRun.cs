@@ -6,8 +6,11 @@ namespace TDD.Tests
     /// </summary>
     internal sealed class CWasRun
     {
+        private readonly string m_Name;
+
         public CWasRun(string name)
         {
+            m_Name = name;
             WasRun = null;
         }
 
@@ -20,7 +23,9 @@ namespace TDD.Tests
 
         public void Run()
         {
-            TestMethod();
+            var type       = typeof(CWasRun);
+            var methodInfo = type.GetMethod(m_Name);
+            methodInfo?.Invoke(obj: this, parameters: null);
         }
     }
 }
