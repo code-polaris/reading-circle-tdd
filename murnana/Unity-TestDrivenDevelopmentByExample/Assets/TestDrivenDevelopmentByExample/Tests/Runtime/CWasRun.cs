@@ -4,13 +4,10 @@ namespace TDD.Tests
     /// <summary>
     /// 第18章「xUnitへ向かう小さな一歩」のサンプル
     /// </summary>
-    internal sealed class CWasRun
+    internal sealed class CWasRun : CTestCase
     {
-        private readonly string m_Name;
-
-        public CWasRun(string name)
+        public CWasRun(string name) : base(name: name)
         {
-            m_Name = name;
             WasRun = null;
         }
 
@@ -19,13 +16,6 @@ namespace TDD.Tests
         public void TestMethod()
         {
             WasRun = 1;
-        }
-
-        public void Run()
-        {
-            var type       = typeof(CWasRun);
-            var methodInfo = type.GetMethod(m_Name);
-            methodInfo?.Invoke(obj: this, parameters: null);
         }
     }
 }
