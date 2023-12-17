@@ -12,9 +12,9 @@ namespace TDD.Tests
         public void Sample()
         {
             var test = new CWasRun("TestMethod");
-            TestContext.WriteLine(test.WasRun);
+            Assert.IsNull(test.WasRun);
             test.Run();
-            TestContext.WriteLine(test.WasRun);
+            Assert.IsNotNull(test.WasRun);
         }
 
         [Test]
@@ -28,13 +28,13 @@ namespace TDD.Tests
             var testMethod = testType.GetMethod("Run");
 
             // print(test.wasRun)
-            TestContext.WriteLine(wasRun?.GetValue(test));
+            Assert.IsNull(wasRun?.GetValue(test));
 
             // test.testMethod
             testMethod?.Invoke(obj: test, parameters: null);
 
             // print(test.wasRun)
-            TestContext.WriteLine(wasRun?.GetValue(test));
+            Assert.IsNotNull(wasRun?.GetValue(test));
         }
     }
 }
