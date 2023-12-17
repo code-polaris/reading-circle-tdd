@@ -17,5 +17,10 @@ namespace TDD.Tests
         {
             WasRun = 1;
         }
+
+        public void Run()
+        {
+            TestMethod();
+        }
     }
 }

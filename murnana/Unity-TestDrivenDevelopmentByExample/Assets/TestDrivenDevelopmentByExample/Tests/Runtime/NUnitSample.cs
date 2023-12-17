@@ -13,7 +13,7 @@ namespace TDD.Tests
         {
             var test = new CWasRun("TestMethod");
             TestContext.WriteLine(test.WasRun);
-            test.TestMethod();
+            test.Run();
             TestContext.WriteLine(test.WasRun);
         }
 
@@ -25,7 +25,7 @@ namespace TDD.Tests
             var test     = Activator.CreateInstance(type: testType, "TestMethod");
 
             var wasRun     = testType.GetProperty("WasRun");
-            var testMethod = testType.GetMethod("TestMethod");
+            var testMethod = testType.GetMethod("Run");
 
             // print(test.wasRun)
             TestContext.WriteLine(wasRun?.GetValue(test));
