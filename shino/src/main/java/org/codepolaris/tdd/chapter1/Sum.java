@@ -1,4 +1,4 @@
-package org.codepolaris.tdd;
+package org.codepolaris.tdd.chapter1;
 
 public class Sum implements Expression {
 

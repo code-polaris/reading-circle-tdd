@@ -1,6 +1,6 @@
-package org.codepolaris.tdd;
+package org.codepolaris.tdd.chapter1;
 
-import org.codepolaris.tdd.utils.Pair;
+import org.codepolaris.tdd.chapter1.utils.Pair;
 
 import java.util.HashMap;
 import java.util.Map;
