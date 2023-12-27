@@ -8,7 +8,7 @@ use Exception;
 
 class Sum implements Expression
 {
-    public function __construct(public Money $augend, public Money $addend)
+    public function __construct(public Expression $augend, public Expression $addend)
     {
     }
 
@@ -26,9 +26,14 @@ class Sum implements Expression
         return $obj;
     }
 
+    public function plus(Expression $addend): ?Expression
+    {
+        return null;
+    }
+
     public function reduce(Bank $bank, string $to): Money
     {
-        $amount = $this->augend->amount + $this->addend->amount;
+        $amount = $this->augend->reduce($bank, $to)->amount + $this->addend->reduce($bank, $to)->amount;
         return new Money($amount, $to);
     }
 }
