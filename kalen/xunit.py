@@ -18,11 +18,9 @@ class WasRun(TestCase):
         self.log = self.log + "testMethod"
 
 class TestCaseTest(TestCase):
-    def setUp(self):
-        self.test = WasRun("testMethod")
-    # テスト変更
     def TestTemplateMethod(self):
-        self.test.run()
-        assert  self.test.log ==  "setUp testMethod"
+        test = WasRun("testMethod")
+        test.run()
+        assert  test.log ==  "setUp testMethod"
         
 TestCaseTest("TestTemplateMethod").run()
