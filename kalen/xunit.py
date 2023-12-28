@@ -21,6 +21,13 @@ class TestCase:
 
         self.tearDown()
         return result
+# 新しいクラスを追加    
+class TestSuite:
+    def __init__(self):
+        self.tests = []
+        
+    def add(self, test):
+        self.tests.append(test)
 
 class WasRun(TestCase):    
     def setUp(self):
@@ -70,7 +77,7 @@ class TestCaseTest(TestCase):
         result.testStarted()
         result.testFailed()
         assert result.summary() == "1 run, 1 failed"
-    # 新しいテストを追加
+    
     def TestSuite(self):
         suite = TestSuite()
         suite.add(WasRun("testMethod"))
@@ -78,7 +85,6 @@ class TestCaseTest(TestCase):
         result = suite.run()
         assert result.summary() == "2 run, 1 failed"
 
-# テストメソッドの中で例外をキャッチし出力できるようにする
 print(TestCaseTest("testTemplateMethod").run().summary())
 print(TestCaseTest("testResult").run().summary())
 print(TestCaseTest("testfailedResult").run().summary())
