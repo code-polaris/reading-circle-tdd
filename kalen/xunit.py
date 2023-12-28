@@ -99,8 +99,14 @@ class TestCaseTest(TestCase):
         result = suite.run(result)
         assert result.summary() == "2 run, 1 failed"
 
-print(TestCaseTest("testTemplateMethod").run().summary())
-print(TestCaseTest("testResult").run().summary())
-print(TestCaseTest("testfailedResult").run().summary())
-print(TestCaseTest(" TestFailedResultFormatting").run().summary())
-print(TestCaseTest("TestSuite").run().summary())
+# テストの実行部分を書き直す
+suite = TestSuite()     
+suite.add(TestCaseTest("TestTemplateMethod"))
+suite.add(TestCaseTest("TestResult"))
+suite.add(TestCaseTest("TestFailedResult"))
+suite.add(TestCaseTest("TestFailedResultFormatting"))
+suite.add(TestCaseTest("TestSuite"))
+
+result = TestResult()
+suite.run(result)
+print(result.summary())
