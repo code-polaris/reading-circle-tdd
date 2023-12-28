@@ -26,15 +26,20 @@ class WasRun(TestCase):
         self.log = self.log + "tearDown"
 
 class TestResult:
+    # コンストラクタを設定
+    def __init__(self):
+        self.runCount = 1
+
     def summary(self):
-        return "1 run, 0 failed"
+        # テスト数を記号定数に置き換え　初期値は１
+        return "{0} run, 0 failed" .format(self.runCount)
 
 class TestCaseTest(TestCase):
     def testTemplateMethod(self):
         test = WasRun("testMethod")
         test.run()
         assert  test.log ==  "setUp testMethod tearDown"
-    # 新たなテストを追加
+    
     def testResult(self):
         test = WasRun("testMethod")
         result = test.run()
