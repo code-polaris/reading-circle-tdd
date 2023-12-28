@@ -4,7 +4,7 @@ class TestCase:
 
     def setUp(self):
         pass
-    # 空実装
+    
     def tearDown(self):
         pass
 
@@ -12,7 +12,6 @@ class TestCase:
         self.setUp()
         method = getattr(self, self.name)
         method()
-        # 新たなメソッドを追加
         self.tearDown()
 
 class WasRun(TestCase):    
@@ -21,7 +20,7 @@ class WasRun(TestCase):
 
     def testMethod(self):
         self.log = self.log + "testMethod "
-    # 新たなログを追加
+    
     def tearDown(self):
         self.log = self.log + "tearDown"
 
