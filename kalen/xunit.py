@@ -13,12 +13,12 @@ class TestCase:
 class WasRun(TestCase):    
     def setUp(self):
         self.wasRun = None
-        self.wasSetUp = 1
-        # 記録用のログを保持できるようにする
-        self.log = "setUp"
+        self.log = "setUp "
 
     def testMethod(self):
         self.wasRun = 1
+        # 追加で文字列がくっつくようにする
+        self.log = self.log + "testMethod"
 
 class TestCaseTest(TestCase):
     def setUp(self):
@@ -30,8 +30,8 @@ class TestCaseTest(TestCase):
     
     def TestSetUp(self):
         self.test.run()
-        # ログを見るテストに変更
-        assert "setUp" == self.test.log
+        # テストする文字列内容を変更
+        assert self.test.log == "setUp testMethod"
         
 TestCaseTest("TestRunning").run()
 TestCaseTest("TestSetUp").run()
