@@ -1,7 +1,7 @@
-# コンストラクタを設定。今はまだ中身はPass
+# コンストラクタの中身を設定
 class WasRun:
     def __inin__(self, name):
-        pass
+        self.wasRun = None
 
 test = WasRun("testMethod")
 print(test.wasRun)
