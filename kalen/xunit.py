@@ -24,6 +24,10 @@ class WasRun(TestCase):
     def tearDown(self):
         self.log = self.log + "tearDown"
 
+class TestResult:
+    def summary(self):
+        return "1 run, 0 failed"
+
 class TestCaseTest(TestCase):
     def TestTemplateMethod(self):
         test = WasRun("testMethod")
@@ -36,3 +40,4 @@ class TestCaseTest(TestCase):
         assert result.summary() == "1 run, 0 failed"
         
 TestCaseTest("TestTemplateMethod").run()
+TestCaseTest("TestResult").run()
