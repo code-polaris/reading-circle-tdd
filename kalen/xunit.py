@@ -28,14 +28,11 @@ class TestSuite:
         
     def add(self, test):
         self.tests.append(test)
-    # runメソッドは同じTestResultインスタンスをすべての実行対象テストに対して使いたい
+    
     def run(self):
         result = TestResult()
-        #リストから一つずつ変数testにいれる
         for test in self.tests:
-            #リストに入っていたもの(これはメソッド)を一つずつrun（TestResultを動かす)する
             test.run(result)
-        #　runした結果のTestResultインスタンスが返る
         return result
 
 class WasRun(TestCase):    
@@ -55,7 +52,6 @@ class TestResult:
 
     def __init__(self):
         self.runCount = 0
-        # エラーのデフォルト値を設定
         self.errorCount = 0
     
     def testStarted(self):
@@ -87,11 +83,18 @@ class TestCaseTest(TestCase):
         result.testFailed()
         assert result.summary() == "1 run, 1 failed"
     
+    """
+    呼び出し側、つまりテストコードの方でTestResultインスタンスを作れば、TestSuiteのrunでは
+    深い構造を持たなくともforを回せる。これはCollectingParameterPatternと呼ばれる。
+    これは少し難しい構造デザイン(´・ω・｀)
+    """
     def TestSuite(self):
         suite = TestSuite()
         suite.add(WasRun("testMethod"))
         suite.add(WasRun("testBrokenMethod"))
-        result = suite.run()
+        # TestSuiteの中ではなく、テスト側でTestResultインスタンスを作る
+        result = TestResult()
+        result = suite.run(result)
         assert result.summary() == "2 run, 1 failed"
 
 print(TestCaseTest("testTemplateMethod").run().summary())
