@@ -52,7 +52,7 @@ class TestCaseTest(TestCase):
         result = test.run()
         assert result.summary() == "1 run, 0 failed"
 
-    # ちゃんと動かせるまで一旦コメントアウトする
+    
     # def testfailedResult(self):
     #     test = WasRun("testBrokenMethod")
     #     result = test.run()
