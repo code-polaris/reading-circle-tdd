@@ -1,6 +1,7 @@
-# WasRunクラスを準備する
+# コンストラクタを設定。今はまだ中身はPass
 class WasRun:
-    pass
+    def __inin__(self, name):
+        pass
 
 test = WasRun("testMethod")
 print(test.wasRun)
