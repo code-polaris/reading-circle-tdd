@@ -1,4 +1,7 @@
-# テストケースにフラグを準備する
+# WasRunクラスを準備する
+class WasRun:
+    pass
+
 test = WasRun("testMethod")
 print(test.wasRun)
 test.testMethod()
