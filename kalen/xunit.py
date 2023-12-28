@@ -8,7 +8,7 @@ class TestCase:
     def tearDown(self):
         pass
     # runメソッドの変更
-    def run(self):
+    def run(self, result):
         result = TestResult()
         result.testStarted()
         self.setUp()
@@ -29,11 +29,13 @@ class TestSuite:
     def add(self, test):
         self.tests.append(test)
     
-    def run(self):
-        result = TestResult()
+    def run(self, result): # 引数を追加
+        # #インスタンスはテストの方で作る
+        #result = TestResult()
         for test in self.tests:
             test.run(result)
-        return result
+        # ここに戻り値を明示せずともテストの方で返せる
+        # return result
 
 class WasRun(TestCase):    
     def setUp(self):
