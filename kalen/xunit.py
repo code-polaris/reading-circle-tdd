@@ -26,12 +26,14 @@ class WasRun(TestCase):
         self.log = self.log + "tearDown"
 
 class TestResult:
-    # コンストラクタを設定
+
     def __init__(self):
-        self.runCount = 1
+        self.runCount = 0
+    # カウントアップ出来るようにする
+    def testStarted(self):
+        self.runCount += 1
 
     def summary(self):
-        # テスト数を記号定数に置き換え　初期値は１
         return "{0} run, 0 failed" .format(self.runCount)
 
 class TestCaseTest(TestCase):
