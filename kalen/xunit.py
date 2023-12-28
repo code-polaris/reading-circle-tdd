@@ -1,14 +1,14 @@
-# testMethodの動的な呼び出し
+# 新たなクラスを設定
+class TestCase:
+    pass
+
 class WasRun:
     def __init__(self, name):
         self.wasRun = None
-        # 文字列受け取り用変数
         self.name = name
 
     def run(self):
-        # コンストラクタで受け取った文字列でメソッドを呼び出す
         method = getattr(self, self.name)
-        # 実行　実際はtestMethodが動く
         method()
 
     def testMethod(self):
