@@ -1,17 +1,15 @@
 class TestCase:
     def __init__(self, name):
         self.name= name
-        
-# TestCaseクラスを継承
-class WasRun(TestCase):
-    def __init__(self, name):
-        self.wasRun = None
-        # スーパー関数でnameを引き継ぐ
-        super().__init__(name)
-
+    # runメソッドを引き上げ
     def run(self):
         method = getattr(self, self.name)
         method()
+
+class WasRun(TestCase):
+    def __init__(self, name):
+        self.wasRun = None
+        super().__init__(name)
 
     def testMethod(self):
         self.wasRun = 1
