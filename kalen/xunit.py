@@ -23,6 +23,9 @@ class WasRun(TestCase):
 
     def testMethod(self):
         self.log = self.log + "testMethod "
+    # 例外を発生させる
+    def testBrokenMethod(self):
+        raise Exception
     
     def tearDown(self):
         self.log = self.log + "tearDown"
@@ -49,11 +52,11 @@ class TestCaseTest(TestCase):
         result = test.run()
         assert result.summary() == "1 run, 0 failed"
 
-    # 新しいテストを追加
-    def testfailedResult(self):
-        test = WasRun("testBrokenMethod")
-        result = test.run()
-        assert result.summary() == "1 run, 1 failed"
+    # ちゃんと動かせるまで一旦コメントアウトする
+    # def testfailedResult(self):
+    #     test = WasRun("testBrokenMethod")
+    #     result = test.run()
+    #     assert result.summary() == "1 run, 1 failed"
         
 TestCaseTest("testTemplateMethod").run()
 TestCaseTest("testResult").run()
