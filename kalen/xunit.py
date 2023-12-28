@@ -12,8 +12,13 @@ class TestCase:
         result = TestResult()
         result.testStarted()
         self.setUp()
-        method = getattr(self, self.name)
-        method()
+        # 例外処理をさばく
+        try:
+            method = getattr(self, self.name)
+            method()
+        except:
+            result.testFailed()
+
         self.tearDown()
         return result
 
@@ -23,7 +28,7 @@ class WasRun(TestCase):
 
     def testMethod(self):
         self.log = self.log + "testMethod "
-    # 例外を発生させる
+    
     def testBrokenMethod(self):
         raise Exception
     
@@ -34,13 +39,13 @@ class TestResult:
 
     def __init__(self):
         self.runCount = 0
+        # エラーのデフォルト値を設定
+        self.errorCount = 0
     
     def testStarted(self):
         self.runCount += 1
-    # 失敗のカウンターを設置
     def testFailed(self):
         self.errorCount += 1
-    # 失敗数をカウントできるようにする
     def summary(self):
         return "{0} run, {1} failed" .format(self.runCount, self.errorCount)
 
@@ -66,8 +71,8 @@ class TestCaseTest(TestCase):
         result.testFailed()
         assert result.summary() == "1 run, 1 failed"
 
-        
-TestCaseTest("testTemplateMethod").run()
-TestCaseTest("testResult").run()
-# TestCaseTest("testfailedResult").run
-TestCaseTest(" TestFailedResultFormatting").run()
+# テストメソッドの中で例外をキャッチし出力できるようにする
+print(TestCaseTest("testTemplateMethod").run().summary())
+print(TestCaseTest("testResult").run().summary())
+print(TestCaseTest("testfailedResult").run().summary())
+print(TestCaseTest(" TestFailedResultFormatting").run().summary())
