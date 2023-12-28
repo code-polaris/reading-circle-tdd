@@ -31,7 +31,7 @@ class TestResult:
 
     def __init__(self):
         self.runCount = 0
-    # カウントアップ出来るようにする
+    
     def testStarted(self):
         self.runCount += 1
 
@@ -48,6 +48,13 @@ class TestCaseTest(TestCase):
         test = WasRun("testMethod")
         result = test.run()
         assert result.summary() == "1 run, 0 failed"
+
+    # 新しいテストを追加
+    def testfailedResult(self):
+        test = WasRun("testBrokenMethod")
+        result = test.run()
+        assert result.summary() == "1 run, 1 failed"
         
 TestCaseTest("testTemplateMethod").run()
 TestCaseTest("testResult").run()
+TestCaseTest("testfailedResult").run
