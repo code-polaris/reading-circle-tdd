@@ -1,7 +1,10 @@
-# コンストラクタの中身を設定
+# 実行時メソッドが足りないと怒られていたメソッドを追加
 class WasRun:
-    def __inin__(self, name):
+    def __init__(self, name):
         self.wasRun = None
+
+    def testMethod(self):
+        self.wasRun = 1
 
 test = WasRun("testMethod")
 print(test.wasRun)
