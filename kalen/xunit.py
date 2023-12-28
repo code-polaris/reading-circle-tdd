@@ -13,6 +13,7 @@ class TestCase:
         method = getattr(self, self.name)
         method()
         self.tearDown()
+        return TestResult()
 
 class WasRun(TestCase):    
     def setUp(self):
@@ -29,15 +30,15 @@ class TestResult:
         return "1 run, 0 failed"
 
 class TestCaseTest(TestCase):
-    def TestTemplateMethod(self):
+    def testTemplateMethod(self):
         test = WasRun("testMethod")
         test.run()
         assert  test.log ==  "setUp testMethod tearDown"
     # 新たなテストを追加
-    def TestResult(self):
+    def testResult(self):
         test = WasRun("testMethod")
         result = test.run()
         assert result.summary() == "1 run, 0 failed"
         
-TestCaseTest("TestTemplateMethod").run()
-TestCaseTest("TestResult").run()
+TestCaseTest("testTemplateMethod").run()
+TestCaseTest("testResult").run()
