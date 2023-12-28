@@ -9,29 +9,20 @@ class TestCase:
         self.setUp()
         method = getattr(self, self.name)
         method()
-
+# 不必要になったフラグを削除
 class WasRun(TestCase):    
     def setUp(self):
-        self.wasRun = None
         self.log = "setUp "
 
     def testMethod(self):
-        self.wasRun = 1
-        # 追加で文字列がくっつくようにする
         self.log = self.log + "testMethod"
 
 class TestCaseTest(TestCase):
     def setUp(self):
         self.test = WasRun("testMethod")
-
-    def TestRunning(self):
+    # テスト変更
+    def TestTemplateMethod(self):
         self.test.run()
-        assert self.test.wasRun
-    
-    def TestSetUp(self):
-        self.test.run()
-        # テストする文字列内容を変更
-        assert self.test.log == "setUp testMethod"
+        assert  self.test.log ==  "setUp testMethod"
         
-TestCaseTest("TestRunning").run()
-TestCaseTest("TestSetUp").run()
+TestCaseTest("TestTemplateMethod").run()
