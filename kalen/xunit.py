@@ -37,9 +37,12 @@ class TestResult:
     
     def testStarted(self):
         self.runCount += 1
-
+    # 失敗のカウンターを設置
+    def testFailed(self):
+        self.errorCount += 1
+    # 失敗数をカウントできるようにする
     def summary(self):
-        return "{0} run, 0 failed" .format(self.runCount)
+        return "{0} run, {1} failed" .format(self.runCount, self.errorCount)
 
 class TestCaseTest(TestCase):
     def testTemplateMethod(self):
