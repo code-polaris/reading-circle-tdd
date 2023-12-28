@@ -7,13 +7,15 @@ class TestCase:
     
     def tearDown(self):
         pass
-
+    # runメソッドの変更
     def run(self):
+        result = TestResult()
+        result.testStarted()
         self.setUp()
         method = getattr(self, self.name)
         method()
         self.tearDown()
-        return TestResult()
+        return result
 
 class WasRun(TestCase):    
     def setUp(self):
