@@ -1,11 +1,13 @@
-# 新たなクラスを設定
 class TestCase:
-    pass
-
-class WasRun:
+    def __init__(self, name):
+        self.name= name
+        
+# TestCaseクラスを継承
+class WasRun(TestCase):
     def __init__(self, name):
         self.wasRun = None
-        self.name = name
+        # スーパー関数でnameを引き継ぐ
+        super().__init__(name)
 
     def run(self):
         method = getattr(self, self.name)
