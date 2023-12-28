@@ -9,7 +9,7 @@ class TestCase:
         pass
     # runメソッドの変更
     def run(self, result):
-        result = TestResult()
+        # result = TestResult()
         result.testStarted()
         self.setUp()
         # 例外処理をさばく
@@ -20,7 +20,7 @@ class TestCase:
             result.testFailed()
 
         self.tearDown()
-        return result
+        #return result
     
 class TestSuite:
     def __init__(self):
@@ -29,13 +29,9 @@ class TestSuite:
     def add(self, test):
         self.tests.append(test)
     
-    def run(self, result): # 引数を追加
-        # #インスタンスはテストの方で作る
-        #result = TestResult()
+    def run(self, result): 
         for test in self.tests:
             test.run(result)
-        # ここに戻り値を明示せずともテストの方で返せる
-        # return result
 
 class WasRun(TestCase):    
     def setUp(self):
@@ -64,29 +60,34 @@ class TestResult:
         return "{0} run, {1} failed" .format(self.runCount, self.errorCount)
 
 class TestCaseTest(TestCase):
+    # setUpの時にインスタンスを作る。
+    #このsetUpメソッドはこのクラスが継承しているTestCaseクラスにあるsetUpメソッドをオーバーライドしている。
+    def setUp(self):
+        self.result = TestResult()
+
     def testTemplateMethod(self):
         test = WasRun("testMethod")
-        result = TestResult()
-        test.run(result)
+        # result = TestResult()
+        test.run(self.result)
         assert  test.log ==  "setUp testMethod tearDown"
     
     def testResult(self):
         test = WasRun("testMethod")
-        result = TestResult()
-        result = test.run(result)
-        assert result.summary() == "1 run, 0 failed"
+        # result = TestResult()
+        test.run(self.result)
+        assert self.result.summary() == "1 run, 0 failed"
     
     def testfailedResult(self):
         test = WasRun("testBrokenMethod")
-        result = TestResult()
-        result = test.run(result)
-        assert result.summary() == "1 run, 1 failed"
+        # result = TestResult()
+        test.run(self.result)
+        assert self.result.summary() == "1 run, 1 failed"
 
     def testFailedResultFormatting(self):
-        result = TestResult()
-        result.testStarted()
-        result.testFailed()
-        assert result.summary() == "1 run, 1 failed"
+        # result = TestResult()
+        self.result.testStarted()
+        self.result.testFailed()
+        assert self.result.summary() == "1 run, 1 failed"
     
     """
     呼び出し側、つまりテストコードの方でTestResultインスタンスを作れば、TestSuiteのrunでは
@@ -98,17 +99,17 @@ class TestCaseTest(TestCase):
         suite.add(WasRun("testMethod"))
         suite.add(WasRun("testBrokenMethod"))
         # TestSuiteの中ではなく、テスト側でTestResultインスタンスを作る
-        result = TestResult()
-        result = suite.run(result)
-        assert result.summary() == "2 run, 1 failed"
+        # result = TestResult()
+        suite.run(self.result)
+        assert self.result.summary() == "2 run, 1 failed"
 
 # テストの実行部分を書き直す
 suite = TestSuite()     
-suite.add(TestCaseTest("TestTemplateMethod"))
-suite.add(TestCaseTest("TestResult"))
-suite.add(TestCaseTest("TestFailedResult"))
-suite.add(TestCaseTest("TestFailedResultFormatting"))
-suite.add(TestCaseTest("TestSuite"))
+suite.add(TestCaseTest("testTemplateMethod"))
+suite.add(TestCaseTest("testResult"))
+suite.add(TestCaseTest("testFailedResult"))
+suite.add(TestCaseTest("testFailedResultFormatting"))
+suite.add(TestCaseTest("testSuite"))
 
 result = TestResult()
 suite.run(result)
