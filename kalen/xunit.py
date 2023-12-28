@@ -21,13 +21,22 @@ class TestCase:
 
         self.tearDown()
         return result
-# 新しいクラスを追加    
+    
 class TestSuite:
     def __init__(self):
         self.tests = []
         
     def add(self, test):
         self.tests.append(test)
+    # runメソッドは同じTestResultインスタンスをすべての実行対象テストに対して使いたい
+    def run(self):
+        result = TestResult()
+        #リストから一つずつ変数testにいれる
+        for test in self.tests:
+            #リストに入っていたもの(これはメソッド)を一つずつrun（TestResultを動かす)する
+            test.run(result)
+        #　runした結果のTestResultインスタンスが返る
+        return result
 
 class WasRun(TestCase):    
     def setUp(self):
