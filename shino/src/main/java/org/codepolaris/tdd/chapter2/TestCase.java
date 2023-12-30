@@ -1,19 +1,29 @@
 package org.codepolaris.tdd.chapter2;
 
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
 import java.lang.reflect.Method;
 
 @Slf4j
+@Getter
 public class TestCase {
+
   protected String testName;
+  protected boolean setUp;
 
   public TestCase(String testName) {
     this.testName = testName;
+    this.setUp = false;
+  }
+
+  public void setUp() {
+    this.setUp = true;
   }
 
   public void run() {
     try {
+      this.setUp();
       Method method = this.getClass().getDeclaredMethod(this.testName);
       method.invoke(this);
     } catch (NoSuchMethodException ex) {
