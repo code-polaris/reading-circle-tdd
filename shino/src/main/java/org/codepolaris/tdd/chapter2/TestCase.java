@@ -4,15 +4,12 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.lang.reflect.Method;
 
-
 @Slf4j
-public class WasRun extends TestCase {
+public class TestCase {
+  protected String testName;
 
-  private Integer wasRun;
-
-  public WasRun(String testName) {
-    super(testName);
-    wasRun = null;
+  public TestCase(String testName) {
+    this.testName = testName;
   }
 
   public void run() {
@@ -25,13 +22,5 @@ public class WasRun extends TestCase {
     } catch (Exception ex) {
       log.error("Error during the method call of " + this.testName + ". The actual error is:" + ex.getMessage());
     }
-  }
-
-  public void testMethod() {
-    wasRun = 1;
-  }
-
-  public Integer getWasRun() {
-    return wasRun;
   }
 }
