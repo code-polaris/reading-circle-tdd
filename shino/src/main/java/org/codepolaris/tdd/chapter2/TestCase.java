@@ -25,8 +25,10 @@ public class TestCase {
     // empty method
   }
 
-  public void run() {
+  public TestResult run() {
+    TestResult result = new TestResult();
     try {
+      result.testStarted();
       setUp();
       // this is java way to call method from the test name
       Method method = this.getClass().getDeclaredMethod(this.testName);
@@ -37,5 +39,6 @@ public class TestCase {
       log.error("Error during the method call of " + this.testName + ". The actual error is:" + ex.getMessage());
     }
     tearDown();
+    return result;
   }
 }

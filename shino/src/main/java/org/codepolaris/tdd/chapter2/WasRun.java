@@ -31,6 +31,10 @@ public class WasRun extends TestCase {
     storedLog.append("testMethod ");
   }
 
+  public void testBrokenMethod() {
+    throw new RuntimeException("failed");
+  }
+
   public String getStoredLog() {
     // return string instead of StringBuilder
     return storedLog.toString();
