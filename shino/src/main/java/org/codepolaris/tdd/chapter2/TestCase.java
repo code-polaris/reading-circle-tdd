@@ -25,8 +25,7 @@ public class TestCase {
     // empty method
   }
 
-  public TestResult run() {
-    TestResult result = new TestResult();
+  public void run(TestResult result) {
     result.testStarted();
     setUp();
     try {
@@ -41,8 +40,6 @@ public class TestCase {
       log.error("Error during the method call of " + this.testName + ". The actual error is:" + ex.getMessage());
     } finally {
       tearDown();
-      log.info(result.summary());
     }
-    return result;
   }
 }
