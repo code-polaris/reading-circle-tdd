@@ -27,18 +27,22 @@ public class TestCase {
 
   public TestResult run() {
     TestResult result = new TestResult();
+    result.testStarted();
+    setUp();
     try {
-      result.testStarted();
-      setUp();
       // this is java way to call method from the test name
       Method method = this.getClass().getDeclaredMethod(this.testName);
       method.invoke(this);
     } catch (NoSuchMethodException ex) {
+      result.testFailed();
       log.error("The provided method name " + this.testName + "not found");
     } catch (Exception ex) {
+      result.testFailed();
       log.error("Error during the method call of " + this.testName + ". The actual error is:" + ex.getMessage());
+    } finally {
+      tearDown();
+      log.info(result.summary());
     }
-    tearDown();
     return result;
   }
 }

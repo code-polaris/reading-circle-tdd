@@ -36,6 +36,14 @@ class TestCaseTest extends TestCase {
   void testFailedResult() {
     var test = new WasRun(TEST_BROKEN_METHOD_NAME);
     var result = test.run();
-//    assertThat(result.summary()).isEqualTo("1 run, 1 failed");
+    assertThat(result.summary()).isEqualTo("1 run, 1 failed");
+  }
+
+  @Test
+  void testFailedResultFormatting() {
+    var result = new TestResult();
+    result.testStarted();
+    result.testFailed();
+    assertThat(result.summary()).isEqualTo("1 run, 1 failed");
   }
 }
