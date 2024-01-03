@@ -12,6 +12,11 @@ namespace TDD
         /// </summary>
         private readonly MethodInfo? m_Method;
 
+        [RequiredMember]
+        public int? IsRun { get; protected set; }
+
+        public int? IsSetUp { get; protected set; }
+
         public TestCase(string name)
         {
             var type = GetType();
@@ -21,7 +26,17 @@ namespace TDD
         [RequiredMember]
         public void Run()
         {
+            SetUp();
+
             m_Method?.Invoke(obj: this, parameters: null);
+        }
+
+        /// <summary>
+        /// テスト前のセットアップ
+        /// </summary>
+        [RequiredMember]
+        public virtual void SetUp()
+        {
         }
     }
 }

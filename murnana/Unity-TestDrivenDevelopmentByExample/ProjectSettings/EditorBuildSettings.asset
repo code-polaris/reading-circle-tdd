@@ -4,5 +4,9 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Packages/dev.murnana.tdd/Runtime/Bootstrap/Bootstrap.unity
+    guid: 702e50c467c428d478b73d3cde5918bf
   m_configObjects: {}
+  m_UseUCBPForAssetBundles: 0

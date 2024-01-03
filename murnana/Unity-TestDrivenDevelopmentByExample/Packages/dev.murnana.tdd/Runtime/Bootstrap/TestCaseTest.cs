@@ -1,5 +1,4 @@
 ﻿#nullable enable
-using System;
 using UnityEngine;
 
 namespace TDD.BootStrap
@@ -9,6 +8,8 @@ namespace TDD.BootStrap
     [DisallowMultipleComponent]
     internal sealed class TestCaseTest : MonoBehaviour
     {
+        private TestCase? m_Test;
+
         /// <summary>
         /// スクリプトが初めて有効化されたフレームで、Update関数が実行される前に呼ばれます
         /// </summary>
@@ -16,6 +17,7 @@ namespace TDD.BootStrap
         /// <seealso href="https://docs.unity3d.com/Manual/ExecutionOrder.html" />
         private void Start()
         {
+            Setup();
             Running();
         }
 
@@ -24,34 +26,26 @@ namespace TDD.BootStrap
         /// </summary>
         private void Running()
         {
-            var testType = typeof(WasRun);
-            var test     = Activator.CreateInstance(type: testType, "TestMethod");
-
-            var isRun      = testType.GetProperty("IsRun");
-            var testMethod = testType.GetMethod("Run");
+            Debug.AssertFormat(
+                condition: m_Test != null,
+                context: this,
+                format: "{0} != null",
+                nameof(m_Test)
+            );
+            m_Test!.Run();
 
             // print(test.wasRun)
-            var testWasRun1 = isRun?.GetValue(test);
-            Debug.LogFormat(
-                logType: LogType.Log,
-                logOptions: LogOption.None,
+            Debug.AssertFormat(
+                condition: m_Test.IsRun != null,
                 context: this,
-                format: "{0}",
-                testWasRun1 ?? "<null>"
+                format: "{0} != null",
+                nameof(m_Test.IsRun)
             );
+        }
 
-            // test.testMethod
-            testMethod?.Invoke(obj: test, parameters: null);
-
-            // print(test.wasRun)
-            var testWasRun2 = isRun?.GetValue(test);
-            Debug.LogFormat(
-                logType: LogType.Log,
-                logOptions: LogOption.None,
-                context: this,
-                format: "{0}",
-                testWasRun2 ?? "<null>"
-            );
+        private void Setup()
+        {
+            m_Test = new WasRun("TestMethod");
         }
     }
 }

@@ -7,20 +7,23 @@ namespace TDD
     /// 第18章「xUnitへ向かう小さな一歩」のサンプル
     /// </summary>
     [RequireDerived]
-    internal class WasRun : TestCase
+    internal sealed class WasRun : TestCase
     {
         public WasRun(string name) : base(name: name)
         {
-            IsRun = null;
         }
-
-        [RequiredMember]
-        public int? IsRun { get; private set; }
 
         [RequiredMember]
         public void TestMethod()
         {
             IsRun = 1;
+        }
+
+        /// <inheritdoc />
+        public override void SetUp()
+        {
+            IsRun   = null;
+            IsSetUp = 1;
         }
     }
 }
