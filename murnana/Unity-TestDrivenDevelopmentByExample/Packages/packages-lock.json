@@ -36,6 +36,12 @@
       },
       "url": "https://packages.unity.com"
     },
+    "dev.murnana.tdd": {
+      "version": "file:dev.murnana.tdd",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
     "com.unity.modules.imgui": {
       "version": "1.0.0",
       "depth": 1,
