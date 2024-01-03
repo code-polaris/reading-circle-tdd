@@ -13,9 +13,7 @@ namespace TDD
         private readonly MethodInfo? m_Method;
 
         [RequiredMember]
-        public int? IsRun { get; protected set; }
-
-        public int? IsSetUp { get; protected set; }
+        public string? Log { get; protected set; }
 
         public TestCase(string name)
         {
@@ -29,13 +27,23 @@ namespace TDD
             SetUp();
 
             m_Method?.Invoke(obj: this, parameters: null);
+
+            TearDown();
         }
 
         /// <summary>
-        /// テスト前のセットアップ
+        /// テスト前の前準備
         /// </summary>
         [RequiredMember]
         public virtual void SetUp()
+        {
+        }
+
+        /// <summary>
+        /// テスト後の後片付け
+        /// </summary>
+        [RequiredMember]
+        public virtual void TearDown()
         {
         }
     }

@@ -16,14 +16,19 @@ namespace TDD
         [RequiredMember]
         public void TestMethod()
         {
-            IsRun = 1;
+            Log = Log + "TestMethod ";
         }
 
         /// <inheritdoc />
         public override void SetUp()
         {
-            IsRun   = null;
-            IsSetUp = 1;
+            Log = Log + "Setup ";
+        }
+
+        /// <inheritdoc />
+        public override void TearDown()
+        {
+            Log = Log + "TearDown ";
         }
     }
 }

@@ -8,8 +8,6 @@ namespace TDD.BootStrap
     [DisallowMultipleComponent]
     internal sealed class TestCaseTest : MonoBehaviour
     {
-        private TestCase? m_Test;
-
         /// <summary>
         /// スクリプトが初めて有効化されたフレームで、Update関数が実行される前に呼ばれます
         /// </summary>
@@ -17,35 +15,23 @@ namespace TDD.BootStrap
         /// <seealso href="https://docs.unity3d.com/Manual/ExecutionOrder.html" />
         private void Start()
         {
-            Setup();
-            Running();
+            TemplateMethod();
         }
 
         /// <summary>
         /// テストを実行します
         /// </summary>
-        private void Running()
+        private void TemplateMethod()
         {
+            var test = new WasRun("TestMethod");
+            test.Run();
             Debug.AssertFormat(
-                condition: m_Test != null,
+                condition: test.Log == "Setup TestMethod TearDown ",
                 context: this,
-                format: "{0} != null",
-                nameof(m_Test)
+                format: "{0} == \"Setup TestMethod TearDown \" but '{1}'",
+                nameof(test.Log),
+                test.Log
             );
-            m_Test!.Run();
-
-            // print(test.wasRun)
-            Debug.AssertFormat(
-                condition: m_Test.IsRun != null,
-                context: this,
-                format: "{0} != null",
-                nameof(m_Test.IsRun)
-            );
-        }
-
-        private void Setup()
-        {
-            m_Test = new WasRun("TestMethod");
         }
     }
 }
