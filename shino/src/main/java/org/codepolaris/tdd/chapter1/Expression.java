@@ -1,4 +1,4 @@
-package org.codepolaris.tdd;
+package org.codepolaris.tdd.chapter1;
 
 public interface Expression {
   Money reduce(Bank bank, String to);

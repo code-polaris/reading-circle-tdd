@@ -1,6 +1,6 @@
-package org.codepolaris.tdd;
+package org.codepolaris.tdd.chapter1;
 
-import org.codepolaris.tdd.utils.Currency;
+import org.codepolaris.tdd.chapter1.utils.Currency;
 
 import java.util.Objects;
 

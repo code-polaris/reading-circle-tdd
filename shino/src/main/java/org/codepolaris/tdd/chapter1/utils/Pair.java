@@ -1,4 +1,4 @@
-package org.codepolaris.tdd.utils;
+package org.codepolaris.tdd.chapter1.utils;
 
 import java.util.Objects;
 

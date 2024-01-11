@@ -1,11 +1,15 @@
-package org.codepolaris.tdd;
+package org.codepolaris.tdd.chapter1;
 
+import org.codepolaris.tdd.chapter1.Bank;
+import org.codepolaris.tdd.chapter1.Expression;
+import org.codepolaris.tdd.chapter1.Money;
+import org.codepolaris.tdd.chapter1.Sum;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.codepolaris.tdd.utils.Currency.CHF;
-import static org.codepolaris.tdd.utils.Currency.USD;
+import static org.codepolaris.tdd.chapter1.utils.Currency.CHF;
+import static org.codepolaris.tdd.chapter1.utils.Currency.USD;
 
 class MoneyTest {
 
