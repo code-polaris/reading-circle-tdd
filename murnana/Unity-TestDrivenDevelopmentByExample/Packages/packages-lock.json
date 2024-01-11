@@ -1,14 +1,14 @@
 {
   "dependencies": {
     "com.unity.ext.nunit": {
-      "version": "2.0.3",
+      "version": "2.0.5",
       "depth": 1,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
     "com.unity.ide.rider": {
-      "version": "3.0.26",
+      "version": "3.0.27",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -35,6 +35,12 @@
         "com.unity.modules.jsonserialize": "1.0.0"
       },
       "url": "https://packages.unity.com"
+    },
+    "dev.murnana.tdd": {
+      "version": "file:dev.murnana.tdd",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
     },
     "com.unity.modules.imgui": {
       "version": "1.0.0",
