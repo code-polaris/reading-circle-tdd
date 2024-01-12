@@ -7,12 +7,10 @@ class TestCase:
     
     def tearDown(self):
         pass
-    # runメソッドの変更
+
     def run(self, result):
-        # result = TestResult()
         result.testStarted()
         self.setUp()
-        # 例外処理をさばく
         try:
             method = getattr(self, self.name)
             method()
@@ -20,7 +18,6 @@ class TestCase:
             result.testFailed()
 
         self.tearDown()
-        #return result
     
 class TestSuite:
     def __init__(self):
@@ -60,8 +57,7 @@ class TestResult:
         return "{0} run, {1} failed" .format(self.runCount, self.errorCount)
 
 class TestCaseTest(TestCase):
-    # setUpの時にインスタンスを作る。
-    #このsetUpメソッドはこのクラスが継承しているTestCaseクラスにあるsetUpメソッドをオーバーライドしている。
+    
     def setUp(self):
         self.result = TestResult()
 
@@ -89,21 +85,14 @@ class TestCaseTest(TestCase):
         self.result.testFailed()
         assert self.result.summary() == "1 run, 1 failed"
     
-    """
-    呼び出し側、つまりテストコードの方でTestResultインスタンスを作れば、TestSuiteのrunでは
-    深い構造を持たなくともforを回せる。これはCollectingParameterPatternと呼ばれる。
-    これは少し難しい構造デザイン(´・ω・｀)
-    """
+
     def TestSuite(self):
         suite = TestSuite()
         suite.add(WasRun("testMethod"))
         suite.add(WasRun("testBrokenMethod"))
-        # TestSuiteの中ではなく、テスト側でTestResultインスタンスを作る
-        # result = TestResult()
         suite.run(self.result)
         assert self.result.summary() == "2 run, 1 failed"
 
-# テストの実行部分を書き直す
 suite = TestSuite()     
 suite.add(TestCaseTest("testTemplateMethod"))
 suite.add(TestCaseTest("testResult"))
