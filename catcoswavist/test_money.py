@@ -10,29 +10,28 @@ class TestMoney:
     # ()がいらないクラス指定→staticメソッド
     def test_multiplication(self):
         
-        five = Dollar(5)
-        assert five.times(2).equals(Dollar(10))
+        # 【疑問】kalen573さんの拝見、この段階ではFrancはいじらない？
+        #  MoneyからDollarを返すように書き換える。Moneyクラスにstaticメソッドを設置する
+        five = Money.dollar(5)
+        print(type(five),"\n",type(five.times(2)),"\n",type(Money.dollar(5)))
+        assert five.times(2) == Money.dollar(10)
         # 原文MoneyTest.javaのassertEquals()はequalsを呼び出す
-        print("product10:",Dollar(10),five.times(2))
         # この段階のproductはdollars.py内でtostringを通していないのでただのアドレス(読めない)
-        assert five.times(3).equals(Dollar(15))
-        print("product15:",Dollar(15),five.times(3))
+        assert five.times(3) == Money.dollar(15)
 
         
     def test_equality(self):
-        assert Dollar(5).equals(Dollar(5))
-        assert not Dollar(5).equals(Dollar(6))
-        assert Franc(5).equals(Franc(5))
-        assert not Franc(5).equals(Franc(6))
+        assert Dollar(5) == Money.dollar(5)
+        assert not Dollar(5) == Money.dollar(6)
+        assert Franc(5) == Franc(5)
+        assert not Franc(5) == Franc(6)
         # ドルとフランが等価でないことを確認
-        assert not Franc(5).equals(Dollar(5))
+        assert not Franc(5) == Money.dollar(5)
 
     def test_franc_multiplication(self):
         five = Franc(5)
-        assert five.times(2).equals(Franc(10))
-        print("franc10:",Franc(10),five.times(2))
-        assert five.times(3).equals(Franc(15))
-        print("franc15:",Franc(15),five.times(3))
+        assert five.times(2) == Franc(10)
+        assert five.times(3) == Franc(15)
 
 if __name__ == '__main__':
     TestMoney().test_multiplication()

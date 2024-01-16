@@ -1,3 +1,5 @@
+from abc import abstractclassmethod
+# kalen573さんの拝見
 class Money:
     def __init__(self,amount):
         self._amount = amount
@@ -10,5 +12,19 @@ class Money:
     def equals(self,object) -> bool:
         if isinstance(object, Money):
             return self._amount == object.amount and type(self) == type(object)
-        return
-        # _amountのアンダースコア外す？外さない？
+        # kalen573さんの拝見
+        """静的メソッドを追加。この時クラスのインポートがループするためMoneyクラスファイルにサブクラスも置くようにする
+        # classmethodにしない理由は、dollarメソッドが特にクラスのバックグラウンドを必要としないため。
+        """
+    @staticmethod
+    def dollar(amount: int):
+        return Dollar(amount)
+    
+class Dollar(Money):
+    def __init__(self, amount):
+        super().__init__(amount)
+        self.__amount = amount
+    
+    # フランとダラーのタイムズメソッドを一致させMoneyに置けるようにする
+    def times(self,multiplier):
+        return Dollar(self.amount*multiplier)
