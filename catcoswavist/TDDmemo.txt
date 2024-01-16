@@ -1,0 +1,75 @@
+TDDmemo.txt
+以下のコード「Money.java」を読みやすいように改行してください。
+
+ありがとうございます。「Money.java」をPythonに書き直してください。テストはpytestを使用してください。
+==========
+間違ったgit commit（コミットメッセージ）を修正したい https://qiita.com/ymp-a/items/0ed00353cdd5ca9e133c #Qiita @syamashita20より
+
+git amendするときにvimで編集すると`#`がコメントアウト扱いされてしまう問題
+`git commit --amend -m "#10 課題2 マジックナンバーを修正"`
+
+==========
+#15 第1章 p.30までの仮実装Dollar.py、test_money.py、TODO.md作成
+git commit --amend -m "#15 第1章 p.30までの仮実装Dollar.py、test_money.py、TODO.md作成"
+============
+
+これJava入門とテスト入門するべき？
+Pythonのクラスと変数
+ファクトリーパターン
+コンピュータはなぜ動くのか
+プログラムはなぜ動くのか
+==========
+
+$ git commit -m "#15 第1章 p.33までの仮実装 依存性と重複"
+
+$ git commit -m "#15 第1章 p.37まで完了 ベタ書きから変数へ"
+============
+$ git commit -m "#16 第2章 p.44まで完了 副作用解消"
+
+$ git commit -m "#16 第2章 実行時にテストの結果を出力できるようにした"
+
+$ git commit -m "#16 第2章 p.44まで完了 ログ削除"
+
+ChatGPTに翻訳させる
+ログのライブラリ　ログレベル　デバッグの時だけ用意されるログ
+
+$ git commit -m "#17 第3章 p.50まで 等価性の比較"
+
+$ git commit -m "#17 第3章 p.53まで完了 2つのDollarについて等価性の比較"
+
+$ git commit -m "#17 第4章 p.53まで アサーションの修正により、Dollar同士を直接比較"
+
+$ git commit --amend -m "#17 第4章 p.55まで アサーションの修正により、Dollar同士を直接比較"
+
+一時 変数 product は 用 を なさ なく なっ た ので、 インライン 化
+
+$ git commit -m "#17 第4章 p.56まで 一時変数productをインライン化"
+
+```
+★★後回し★★
+# 4章は#17ではなく#24
+9375687 (HEAD -> catcoswavist) #17 第4章 p.56まで 一時変数productをインライン化     
+8ee63e7 #17 第4章 p.55まで アサーションの修正により、Dollar同士を直接比較
+★★★★★★★
+```
+
+git commit -m "#24 第4章 p.60まで完了 amountフィールドをprivateに変更(要質問:デコレータ@propertyとは？)"
+
+git commit -m "#25 第5章 p.68まで完了 Dollarクラスのコピペにより、Francクラスを作成"
+
+git commit -m "#26 第6章 p.73まで サブクラスから見るため、一時変数amountをprotectedに変更 "
+
+git commit -m "#26 第6章 p.73まで Dollar.pyでの型宣言をDollarクラスからMoneyクラスに変更 "
+
+git commit -m "#26 第6章 p.74まで Dollar.pyでの一時変数をDollarクラスからMoneyクラスに変更 "
+
+
+git commit -m "#26 第6章 p.75まで equalsメソッドをDollarクラスからMoneyクラスに引き上げ"
+
+git commit -m "#26 第6章 p.77まで Francの等価テストを追加"
+
+git commit -m "#26 第6章 p.78まで Franc.pyについても、型宣言と一時変数をDollarクラスからMoneyクラスに変更"
+
+git commit -m "#26 第6章 p.78まで Franc.pyについても、型宣言と一時変数をDollarクラスからMoneyクラスに変更"
+
+git commit -m "#26 第6章 p.83まで完了 Franc.pyのequalメソッドもMoneyクラスに移行"
