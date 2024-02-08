@@ -5,8 +5,6 @@ import lombok.Getter;
 @Getter
 public class WasRun extends TestCase {
 
-  private boolean ran;
-
   // name "log" is already used in TestCase. So storedLog will be used here instead of "log" in the book
   private final StringBuilder storedLog;
 
@@ -29,6 +27,10 @@ public class WasRun extends TestCase {
 
   public void testMethod() {
     storedLog.append("testMethod ");
+  }
+
+  public void testBrokenMethod() {
+    throw new RuntimeException("failed");
   }
 
   public String getStoredLog() {
